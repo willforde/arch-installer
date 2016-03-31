@@ -93,7 +93,7 @@ GPLv3
 [archey3]:https://www.archlinux.org/packages/community/any/archey3/
 [packer]:https://aur.archlinux.org/packages/packer/
 [nano-syntax-highlighting-git]:https://aur.archlinux.org/packages/nano-syntax-highlighting-git/
-[archlinux.org]:https://www.archlinux.org/download/
+[archlinux.org/download/]:https://www.archlinux.org/download/
 [disable-fsck-output.sh]:https://github.com/willforde/arch-installer/blob/master/post-install-scripts/disable-fsck-output.sh
 [install-kodi.sh]:https://github.com/willforde/arch-installer/blob/master/post-install-scripts/install-kodi.sh
 
