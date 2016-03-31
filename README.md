@@ -58,7 +58,7 @@ $ git clone https://github.com/willforde/arch-installer.git
 $ cd arch-installer
 $ sh installer.sh
 ```
-
+---
 Development
 ----
 Want to contribute? Great! Any contributions are welcomed
