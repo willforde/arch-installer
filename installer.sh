@@ -522,7 +522,7 @@ arch-chroot $VARTARGETDIR /root/postScript.sh
 ################
 
 # Copy over installers
-cp -r installers $VARTARGETDIR/root/installers
+cp -r post-install-scripts $VARTARGETDIR/root/post-install-scripts
 
 echo "##########################################"
 echo "## Don't forget to execute after reboot ##"
