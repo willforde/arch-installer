@@ -59,8 +59,8 @@ $ cd arch-installer
 $ sh installer.sh
 ```
 
-# Development
-
+Development
+----
 Want to contribute? Great! Any contributions are welcomed
 
 Todo's
