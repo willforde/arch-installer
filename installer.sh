@@ -456,16 +456,16 @@ if [ -f "$VARTARGETDIR/usr/bin/archey3" ]; then
 cat > $VARTARGETDIR/root/.archey3.cfg <<ARCHEY_EOF
 [core]
 color = red
-align = top
-display_modules = distro(), uname(n), uname(r), uptime(), packages(), ram(), uname(p), fs(/)
+align = center
+display_modules = distro(), uname(n), uname(r), uptime(), packages(), ram(), fs(/)
 ARCHEY_EOF
 
 # Configure archey for normal user
 cat > $VARTARGETDIR/etc/skel/.archey3.cfg <<ARCHEY_EOF
 [core]
 color = green
-align = top
-display_modules = distro(), uname(n), uname(r), uptime(), packages(), ram(), uname(p), fs(/)
+align = center
+display_modules = distro(), uname(n), uname(r), uptime(), packages(), ram(), fs(/)
 ARCHEY_EOF
 fi
 
