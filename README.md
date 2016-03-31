@@ -3,7 +3,7 @@
 Arch-installer is an attempt to automate the installation of Arch Linux. It will install the base system along with some extra packages 
 as well as some optional packages. Most from the official repositories and some from the AUR(Arch User Repository). 
 
-Some post install scripts are also available in the post-install-scripts folder. "install-kodi.sh" to install kodi and "disable-fsck-output.sh" to disable fsck output on bootup. The scripts will be available in the root directory after install.
+Some post install scripts are also available in the post-install-scripts folder. "[install-kodi.sh]" to install kodi and "[disable-fsck-output.sh]" to disable fsck output on bootup. The scripts will be available in the root directory after install.
 
 ### Fallowing are the steps that the script takes
   - Ask for the Hostname to give to the computer
@@ -94,3 +94,6 @@ GPLv3
 [packer]:https://aur.archlinux.org/packages/packer/
 [nano-syntax-highlighting-git]:https://aur.archlinux.org/packages/nano-syntax-highlighting-git/
 [archlinux.org]:https://www.archlinux.org/download/
+[disable-fsck-output.sh]:https://github.com/willforde/arch-installer/blob/master/post-install-scripts/disable-fsck-output.sh
+[install-kodi.sh]:https://github.com/willforde/arch-installer/blob/master/post-install-scripts/install-kodi.sh
+
