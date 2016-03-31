@@ -27,7 +27,7 @@ Some post install scripts are also available in the post-install-scripts folder.
 #
 # Packages
 ### Base Packages
-  - [base] = Base arch linux system packagers
+  - [base] = Base arch linux system packages
   - [base-devel] = Base packages to compile packages from aur
   - [memtest86+] = An advanced memory diagnostic tool
   - [openssh] = Free version of the SSH connectivity tool
