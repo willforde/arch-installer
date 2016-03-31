@@ -1,6 +1,7 @@
 # disable-fsck-output
 Script to disable the fsck hook in mkinitcpio.conf, witch will disable the fsck output message on startup. 
 Will then switch to using a systemd fsck service.
+
 ---
 #
 # install-kodi
