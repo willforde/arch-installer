@@ -490,16 +490,17 @@ export LANG=en_IE.UTF-8
 loadkeys ${KEYMAP}
 locale-gen
 
-# ReCreate linux images
-echo "Creating Initial Ramdisk"
-mkinitcpio -p linux
-
 echo "Changing Root password"
 echo -e "${ROOTPASSWORD}\n${ROOTPASSWORD}" | passwd root
 
 # Create user acount
 useradd -m -G wheel ${USERNAME}
 echo -e "${USERPASS}\n${USERPASS}" | passwd ${USERNAME}
+
+# Check if running in a vmware VM
+if [ -d "/usr/lib/open-vm-tools" ]; then
+	cat /proc/version > /etc/arch-release
+fi
 
 # Update mlocate database if installed
 if [ -f "usr/bin/updatedb" ]; then
@@ -508,6 +509,10 @@ fi
 
 echo "Optimizing Pacman Database"
 pacman-optimize
+
+# ReCreate linux images
+echo "Creating Initial Ramdisk"
+mkinitcpio -p linux
 
 rm -rf /root/postScript.sh
 POST_EOF
