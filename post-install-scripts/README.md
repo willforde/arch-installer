@@ -1,3 +1,9 @@
+# switch-to-lts
+Switch to using the linux-lts kernel. This particular kernel version enjoys long-term support from upstream, including security fixes and some feature backports
+For Arch users seeking a long-term support kernel, linux-lts is the answer.
+
+---
+#
 # disable-fsck-output
 Script to disable the fsck hook in mkinitcpio.conf, witch will disable the fsck output message on startup. 
 Will then switch to using a systemd fsck service.
