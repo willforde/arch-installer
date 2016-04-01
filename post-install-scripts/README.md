@@ -1,5 +1,5 @@
 # switch-to-lts
-Switch to using the linux-lts kernel. This particular kernel version enjoys long-term support from upstream, including security fixes and some feature backports
+Switch to using the linux-lts kernel. This particular kernel version enjoys long-term support from upstream, including security fixes and some feature backports.
 For Arch users seeking a long-term support kernel, linux-lts is the answer.
 
 ---
