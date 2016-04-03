@@ -19,6 +19,7 @@ alias pacrm="/bin/pacman -R"
 alias chown='chown --preserve-root'
 alias chmod='chmod --preserve-root'
 alias chgrp='chgrp --preserve-root'
+alias su='su -'
 
 # Show hidden files without directory markers but with
 # leading backslashes and human readable file sizes
