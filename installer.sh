@@ -324,8 +324,8 @@ arch-chroot $VARTARGETDIR /root/bootloader.sh
 ## Install Aur Packages ##
 ##########################
 
-# Change sudoers to allow wheel group access to sudo without password
-sed -i 's/# %wheel ALL=(ALL) NOPASSWD/%wheel ALL=(ALL) NOPASSWD/' $VARTARGETDIR/etc/sudoers
+# Change sudoers to allow nobody user access to sudo without password
+echo 'nobody ALL=(ALL) NOPASSWD: ALL' > $VARTARGETDIR/etc/sudoers.d/20_nobody
 
 # Create AUR Install Script
 # -------------------------
@@ -375,8 +375,7 @@ chmod u+x $VARTARGETDIR/root/aurinstall.sh
 arch-chroot $VARTARGETDIR /root/aurinstall.sh
 
 # Change sudoers to allow wheel group access to sudo with password
-sed -i 's/%wheel ALL=(ALL) NOPASSWD/# %wheel ALL=(ALL) NOPASSWD/' $VARTARGETDIR/etc/sudoers
-sed -i 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' $VARTARGETDIR/etc/sudoers
+rm $VARTARGETDIR/etc/sudoers.d/20_nobody
 
 
 ##########################
@@ -467,6 +466,10 @@ align = center
 display_modules = distro(), uname(n), uname(r), uptime(), packages(), ram(), fs(/)
 ARCHEY_EOF
 fi
+
+# Change sudoers to allow wheel group access to sudo with password
+echo '%wheel ALL=(ALL) ALL' > $VARTARGETDIR/etc/sudoers.d/10_wheel
+chmod 640 $VARTARGETDIR/etc/sudoers.d/10_wheel
 
 
 ########################

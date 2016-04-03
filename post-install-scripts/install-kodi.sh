@@ -11,6 +11,8 @@ fi
 installAURPackages()
 {
 	# Change sudoers to allow wheel group access to sudo without password
+	echo 'nobody ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/20_nobody
+	
 	sed -i 's/%wheel ALL=(ALL) ALL/# %wheel ALL=(ALL) ALL/' /etc/sudoers
 	sed -i 's/# %wheel ALL=(ALL) NOPASSWD/%wheel ALL=(ALL) NOPASSWD/' /etc/sudoers
 	
@@ -24,8 +26,7 @@ installAURPackages()
 	gpasswd -d nobody wheel
 	
 	# Change sudoers to allow wheel group access to sudo with password
-	sed -i 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers
-	sed -i 's/%wheel ALL=(ALL) NOPASSWD/# %wheel ALL=(ALL) NOPASSWD/' /etc/sudoers
+	rm /etc/sudoers.d/20_nobody
 }
 
 ##############################
@@ -33,7 +34,7 @@ installAURPackages()
 ##############################
 
 # Install Packages
-pacman -Sy --noconfirm --needed kodi
+pacman -Sy --noconfirm --needed kodi gdb
 
 # Install Optional Dependencies
 pacman -Sy --noconfirm --needed --asdeps libnfs libplist shairplay lirc udisks unrar unzip lsb-release
@@ -42,21 +43,22 @@ pacman -Sy --noconfirm --needed --asdeps libnfs libplist shairplay lirc udisks u
 installAURPackages kodi-standalone-service kodi-addon-pvr-hts-git
 
 # Core Packages
-# kodi						= Kodi Media Center					= https://www.archlinux.org/packages/community/x86_64/kodi/
+# kodi						= Kodi Media Center						= https://www.archlinux.org/packages/community/x86_64/kodi/
+# gdb						= The GNU Debugger for kodi crash log	= https://www.archlinux.org/packages/extra/x86_64/gdb/
 
 # Kodi Optional Dependencies
-# libnfs 					= NFS shares support				= https://www.archlinux.org/packages/community/x86_64/libnfs/
-# libplist					= AirPlay support					= https://www.archlinux.org/packages/extra/x86_64/libplist/
-# shairplay					= AirPlay support					= https://www.archlinux.org/packages/community/x86_64/shairplay/
-# lirc						= Linux IR Control					= https://www.archlinux.org/packages/extra/x86_64/lirc/
-# udisks					= Automount external drives			= https://www.archlinux.org/packages/extra/x86_64/udisks/
-# unrar						= Unrar Archives support			= https://www.archlinux.org/packages/extra/x86_64/unrar/
-# unzip						= Winzip Archives support 			= https://www.archlinux.org/packages/extra/x86_64/unzip/
-# lsb-release				= Log distro info in crashlog		= https://www.archlinux.org/packages/community/any/lsb-release/
+# libnfs 					= NFS shares support					= https://www.archlinux.org/packages/community/x86_64/libnfs/
+# libplist					= AirPlay support						= https://www.archlinux.org/packages/extra/x86_64/libplist/
+# shairplay					= AirPlay support						= https://www.archlinux.org/packages/community/x86_64/shairplay/
+# lirc						= Linux IR Control						= https://www.archlinux.org/packages/extra/x86_64/lirc/
+# udisks					= Automount external drives				= https://www.archlinux.org/packages/extra/x86_64/udisks/
+# unrar						= Unrar Archives support				= https://www.archlinux.org/packages/extra/x86_64/unrar/
+# unzip						= Winzip Archives support 				= https://www.archlinux.org/packages/extra/x86_64/unzip/
+# lsb-release				= Log distro info in crashlog			= https://www.archlinux.org/packages/community/any/lsb-release/
 
 # AUR Packages
-# kodi-standalone-service	= Allow Direct booting				= https://aur.archlinux.org/packages/kodi-standalone-service/
-# kodi-addon-pvr-hts-git	= TVHeadend PVR Support				= https://aur.archlinux.org/packages/kodi-addon-pvr-hts-git/
+# kodi-standalone-service	= Allow Direct booting					= https://aur.archlinux.org/packages/kodi-standalone-service/
+# kodi-addon-pvr-hts-git	= TVHeadend PVR Support					= https://aur.archlinux.org/packages/kodi-addon-pvr-hts-git/
 
 
 #############
