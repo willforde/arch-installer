@@ -422,13 +422,12 @@ echo "Configuring Network"
 DAEMONS="$DAEMONS systemd-networkd.service systemd-resolved.service"
 ln -sf "/run/systemd/resolve/resolv.conf" $VARTARGETDIR/etc/resolv.conf
 sed -i "s/hosts: files dns myhostname/hosts: files resolve $HOSTNM/" $VARTARGETDIR/etc/nsswitch.conf
-NETNAME=$(networkctl list | grep "ether" | awk '{print $2}')
 cat > $VARTARGETDIR/etc/systemd/network/wired.network <<NET_EOF
 [Match]
-Name=${NETNAME}
+Name=en*
 
 [Network]
-DHCP=ipv4
+DHCP=yes
 NET_EOF
 
 # Install reflector services files
