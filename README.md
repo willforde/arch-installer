@@ -54,6 +54,7 @@ Some post install scripts are also available in the post-install-scripts folder.
 # Installation
 Download the latest ISO from [archlinux.org/download/] and boot into the live ISO. 
 ```sh
+$ pacman -Sy git
 $ git clone https://github.com/willforde/arch-installer.git
 $ cd arch-installer
 $ sh installer.sh
