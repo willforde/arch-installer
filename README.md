@@ -53,8 +53,14 @@ Some post install scripts are also available in the post-install-scripts folder.
 #
 # Installation
 Download the latest ISO from [archlinux.org/download/] and boot into the live ISO. 
+Once the installer boots, start the ssh daemon. Then change the password of root so you can 
+login to the environment using ssh. Next transfer over this installer folder to arch linux live boot environment
+using a file transfer program like [filezilla]. Then just execute this installer
 ```sh
-$ git clone https://github.com/willforde/arch-installer.git
+$ systemctl start sshd
+$ passwd
+$ ip addr show
+$ "Transfer over arch-installer folder"
 $ cd arch-installer
 $ sh installer.sh
 ```
@@ -96,4 +102,4 @@ GPLv3
 [archlinux.org/download/]:https://www.archlinux.org/download/
 [disable-fsck-output.sh]:https://github.com/willforde/arch-installer/blob/master/post-install-scripts/disable-fsck-output.sh
 [install-kodi.sh]:https://github.com/willforde/arch-installer/blob/master/post-install-scripts/install-kodi.sh
-
+[filezilla]:https://filezilla-project.org/
