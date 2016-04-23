@@ -505,8 +505,13 @@ if [ -d "/usr/lib/open-vm-tools" ]; then
 fi
 
 # Update mlocate database if installed
-if [ -f "usr/bin/updatedb" ]; then
+if [ -f "/usr/bin/updatedb" ]; then
 	updatedb
+fi
+
+# Update pkgfile database if installed
+if [ -f "/usr/bin/pkgfile" ]; then
+	pkgfile --update
 fi
 
 echo "Optimizing Pacman Database"
