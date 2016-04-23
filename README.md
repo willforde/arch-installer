@@ -5,7 +5,7 @@ as well as some optional packages. Most from the official repositories and some 
 
 Some post install scripts are also available in the post-install-scripts folder. "[install-kodi.sh]" to install kodi and "[disable-fsck-output.sh]" to disable fsck output on bootup. The scripts will be available in the root directory after install.
 
-### Fallowing are the steps that the script takes
+### The steps that the script takes
   - Ask for the Hostname to give to the computer
   - Ask for the password for root account
   - Ask for username
