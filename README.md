@@ -51,7 +51,7 @@ Some post install scripts are also available in the post-install-scripts folder.
   - [nano-syntax-highlighting-git] = Nano editor syntax highlighting enhancements
 
 #
-# Installation
+# Installation # TODO: Improve installation instructions. Change to download a tarball with curl.
 Download the latest ISO from [archlinux.org/download/] and boot into the live ISO. 
 Once the installer boots, start the ssh daemon. Then change the password of root so you can 
 login to the environment using ssh. Next transfer over this installer folder to arch linux live boot environment
@@ -62,7 +62,7 @@ $ passwd
 $ ip addr show
 $ "Transfer over arch-installer folder"
 $ cd arch-installer
-$ sh installer.sh
+$ sh setup.sh
 ```
 ---
 Development

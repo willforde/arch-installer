@@ -419,6 +419,7 @@ cp $VARTARGETDIR/etc/skel/.nanorc $VARTARGETDIR/root/.nanorc
 # Setup Network
 echo "Configuring Network"
 DAEMONS="$DAEMONS systemd-networkd.service systemd-resolved.service"
+mv $VARTARGETDIR/etc/resolv.conf.bak
 ln -sf "/run/systemd/resolve/resolv.conf" $VARTARGETDIR/etc/resolv.conf
 sed -i "s/hosts: files dns myhostname/hosts: files resolve $HOSTNM/" $VARTARGETDIR/etc/nsswitch.conf
 cat > $VARTARGETDIR/etc/systemd/network/wired.network <<NET_EOF
@@ -496,7 +497,7 @@ echo "Changing Root password"
 echo -e "${ROOTPASSWORD}\n${ROOTPASSWORD}" | passwd root
 
 # Create user acount
-useradd -m -G wheel ${USERNAME}
+useradd -m -G wheel,users ${USERNAME}
 echo -e "${USERPASS}\n${USERPASS}" | passwd ${USERNAME}
 
 # Check if running in a vmware VM
