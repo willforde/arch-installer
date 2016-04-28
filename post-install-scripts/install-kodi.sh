@@ -2,7 +2,7 @@
 set -e
 set -u
 
-# Make sure only root can run our script
+# Make sure only root can run the script
 if [[ $EUID -ne 0 ]]; then
    echo "This script must be run as root" 1>&2
    exit 1
@@ -13,17 +13,8 @@ installAURPackages()
 	# Change sudoers to allow wheel group access to sudo without password
 	echo 'nobody ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/20_nobody
 	
-	sed -i 's/%wheel ALL=(ALL) ALL/# %wheel ALL=(ALL) ALL/' /etc/sudoers
-	sed -i 's/# %wheel ALL=(ALL) NOPASSWD/%wheel ALL=(ALL) NOPASSWD/' /etc/sudoers
-	
-	# Add nobody user to wheel group
-	gpasswd -a nobody wheel
-	
 	# Install AUR Packages
 	sudo -u nobody packer -S --noconfirm $@
-	
-	# Remove nobody user from wheel group
-	gpasswd -d nobody wheel
 	
 	# Change sudoers to allow wheel group access to sudo with password
 	rm /etc/sudoers.d/20_nobody
