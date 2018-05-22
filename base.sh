@@ -134,10 +134,10 @@ requestUserPass()
     USERPASS=""
     CONFIRM="-"
     while [ "$USERPASS" != "$CONFIRM" ]; do
-            USERPASS=$(dialog --title "$USERNAME Password" --insecure --passwordbox "Please enter Password:" 8 50 --output-fd 1)
+            USERPASS=$(dialog --title "User Password" --insecure --passwordbox "Please enter Password for $USERNAME:" 8 50 --output-fd 1)
             handelCanceled $?
 
-            CONFIRM=$(dialog --title "$USERNAME Password" --insecure --passwordbox "Please comfirm Password:" 8 50 --output-fd 1)
+            CONFIRM=$(dialog --title "User Password" --insecure --passwordbox "Please comfirm Password for $USERNAME:" 8 50 --output-fd 1)
             handelCanceled $?
 
             if [ "$USERPASS" == "" ]; then
