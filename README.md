@@ -1,5 +1,4 @@
 # Arch-installer
----
 This script will automate the installation of Arch Linux. Will install the base Arch Linux system
 along with some other extra packages, as well as some optional packages. A AUR(Arch User Repository).
 helper called 'Yay' will also be installed. Below is the list of tasks that the script does, in order of execution.
@@ -25,7 +24,6 @@ helper called 'Yay' will also be installed. Below is the list of tasks that the 
   - Install AUR Helper
 
 ## Packages
----
 ### Explicit Packages
   - [base] = Base arch linux system packages
   - [base-devel] = Base packages to compile packages from aur
@@ -48,7 +46,6 @@ helper called 'Yay' will also be installed. Below is the list of tasks that the 
 
 
 ## Download & Run
----
 Download the latest ISO from [archlinux.org/download/], then boot into the live ISO(Archiso).
 Once the installer boots, run the following commands to download and execute the install script.
 
