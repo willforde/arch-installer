@@ -123,7 +123,7 @@ setfacl -d --set u::rwx,g::rwx,o::- /tmp/build
 cd /tmp/build/
 
 # Install Yay AUR Helper
-sudo -u nobody wget https://aur.archlinux.org/cgit/aur.git/snapshot/yay.tar.gz
+sudo -u nobody curl -SLO https://aur.archlinux.org/cgit/aur.git/snapshot/yay.tar.gz
 sudo -u nobody tar -zxvf yay.tar.gz
 cd yay
 sudo -u nobody makepkg -s -i --noconfirm
