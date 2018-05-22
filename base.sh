@@ -92,9 +92,8 @@ requestHostname()
 	HOSTNM=""
 	while [ "$HOSTNM" = "" ]
 	do
-		dialog --title "Hostname" --inputbox "Please enter hostname:" 8 50 2>/tmp/menuitem
+		HOSTNM=$(dialog --title "Hostname" --inputbox "Please enter hostname:" 8 50 --output-fd 1)
 		handelCanceled $?
-		HOSTNM=$(cat /tmp/menuitem)
 	done
 }
 
@@ -123,11 +122,9 @@ requestRoot()
 requestUser()
 {
     USERNAME=""
-    while [ "$USERNAME" = "" ]
-    do
-        dialog --title "Username" --inputbox "Please enter Username:" 8 50 2>/tmp/menuitem
+    while [ "$USERNAME" = "" ]; do
+        USERNAME=$(dialog --title "Username" --inputbox "Please enter Username:" 8 50 --output-fd 1)
         handelCanceled $?
-        USERNAME=$(cat /tmp/menuitem)
     done
     requestUserPass
 }
@@ -137,10 +134,10 @@ requestUserPass()
     USERPASS=""
     CONFIRM="-"
     while [ "USERPASS" != "$CONFIRM" ]; do
-            USERPASS=$(dialog --title "Root Password" --insecure --passwordbox "Please enter Password:" 8 50 --output-fd 1)
+            USERPASS=$(dialog --title "$USERNAME Password" --insecure --passwordbox "Please enter Password:" 8 50 --output-fd 1)
             handelCanceled $?
 
-            CONFIRM=$(dialog --title "Root Password" --insecure --passwordbox "Please comfirm Password:" 8 50 --output-fd 1)
+            CONFIRM=$(dialog --title "$USERNAME Password" --insecure --passwordbox "Please comfirm Password:" 8 50 --output-fd 1)
             handelCanceled $?
 
             if [ "$USERPASS" == "" ]; then
