@@ -52,7 +52,7 @@ selectDisk()
         for disk in $(lsblk -l | grep disk | awk '{print $1}'); do
                 MODEL=$(hdparm -I /dev/${disk} | awk -F':' '/Model Number/ { print $2 }' | sed 's/^[ \t]*//;s/[ \t]*$//')
                 SIZE=$(hdparm -I /dev/${disk} | grep "device size with M = 1000" | awk -F'(' '{ print $2 }' | sed 's/^[ \t]*//;s/[ \t]*$//' | rev | cut -c 2- | rev)
-                MENU="$MENU '$disk' '$MODEL - $SIZE'"
+                MENU="$MENU '/dev/$disk' '$MODEL - $SIZE'"
         done
         DEVICE=$(echo ${MENU} | xargs dialog --title "Drive Selection" --menu "Please select drive in witch to install Arch Linux.\nWARNING: All data on selected drive will be WIPED clean." 13 60 10 --output-fd 1)
         handelCanceled $?
