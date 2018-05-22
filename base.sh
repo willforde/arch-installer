@@ -133,7 +133,7 @@ requestUserPass()
 {
     USERPASS=""
     CONFIRM="-"
-    while [ "USERPASS" != "$CONFIRM" ]; do
+    while [ "$USERPASS" != "$CONFIRM" ]; do
             USERPASS=$(dialog --title "$USERNAME Password" --insecure --passwordbox "Please enter Password:" 8 50 --output-fd 1)
             handelCanceled $?
 
