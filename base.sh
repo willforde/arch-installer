@@ -355,6 +355,11 @@ arch-chroot ${VARTARGETDIR} sh /root/post.sh ${ROOTPASSWORD} ${USERNAME} ${USERP
 cp -v scripts ${VARTARGETDIR}/opt/install-scripts
 rm ${VARTARGETDIR}/root/post.sh
 
+echo "Unmounting Drive Partitions"
+swapoff ${DEVICE}2
+umount ${VARTARGETDIR}/boot/efi
+umount ${VARTARGETDIR}
+
 echo ""
 echo "##########################################"
 echo "##               All Done               ##"
