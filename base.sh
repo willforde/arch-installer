@@ -128,7 +128,6 @@ requestUser()
         dialog --title "Username" --inputbox "Please enter Username:" 8 50 2>/tmp/menuitem
         handelCanceled $?
         USERNAME=$(cat /tmp/menuitem)
-        requestPassword
     done
     requestUserPass
 }
