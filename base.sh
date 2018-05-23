@@ -231,15 +231,6 @@ export LANG=en_IE.UTF-8
 locale-gen
 echo ""
 
-# Install Required Packages if needed
-echo "Downloading and Install reflector installation requirements"
-pacman -Sy --noconfirm --needed reflector
-
-# Download and sort Mirrors List from Archlinux.org
-echo "Downloading and Ranking mirrors"
-reflector --verbose --protocol http --latest 200 --number 20 --sort rate --save /etc/pacman.d/mirrorlist
-pacman -Syy
-
 
 ##################
 ## Partitioning ##
@@ -274,6 +265,15 @@ swapon ${DEVICE}2
 ######################
 ## Install Packages ##
 ######################
+
+# Install Required Packages if needed
+echo "Downloading and Install reflector installation requirements"
+pacman -Sy --noconfirm --needed reflector
+
+# Download and sort Mirrors List from Archlinux.org
+echo "Downloading and Ranking mirrors"
+reflector --verbose --protocol http --latest 200 --number 20 --sort rate --save /etc/pacman.d/mirrorlist
+pacman -Syy
 
 echo "# Installing Main System"
 pacstrap ${VARTARGETDIR} ${EXTRAPKG}

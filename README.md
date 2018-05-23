@@ -51,8 +51,7 @@ Once the installer boots, run the following commands to download and execute the
 
 ```sh
 $ curl -SLO https://github.com/willforde/arch-installer/archive/master.tar.gz
-$ tar zxf master.tar.gz
-$ cd arch-installer-master
+$ tar zxf master.tar.gz && cd arch-installer-master
 $ sh base.sh
 ```
 
