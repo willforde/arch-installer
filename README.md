@@ -46,7 +46,7 @@ helper called 'Yay' will also be installed. Below is the list of tasks that the 
 
 
 ## Download & Run
-Download the latest ISO from [archlinux.org/download/], then boot into the live ISO(Archiso).
+Download the latest ISO from [archlinux.org], then boot into the live ISO(Archiso).
 Once the installer boots, run the following commands to download and execute the install script.
 
 ```sh
@@ -67,4 +67,4 @@ $ sh base.sh
 [pkgfile]:https://www.archlinux.org/packages/extra/x86_64/pkgfile/
 [yay]:https://aur.archlinux.org/packages/yay/
 [qemu-guest-agent]:https://www.archlinux.org/packages/extra/x86_64/qemu-guest-agent/
-[archlinux.org/download/]:https://www.archlinux.org/download/
+[archlinux.org]:https://www.archlinux.org/download/
