@@ -24,21 +24,21 @@ helper called 'Yay' will also be installed. Below is the list of tasks that the 
   - Install AUR Helper
 
 ## Packages
-### Explicit Packages
+#### Explicit Packages
   - [base] = Base arch linux system packages
   - [base-devel] = Base packages to compile packages from aur
   - [refind-efi] = UEFI Boot Manager - Built with GNU-EFI libs
 
-### Optional Packages
+#### Optional Packages
   - [openssh] = Free version of the SSH connectivity tool
   - [reflector] = Retrieve and filter the latest Pacman mirror list
   - [mlocate] = Merging locate/updatedb implementation
   - [pkgfile] = A pacman files metadata explorer
 
-### Aur Packages
+#### Aur Packages
   - [yay] = Pacman wrapper and AUR helper written in go.
 
-### Extra Packages
+#### Extra Packages
   - [alsa-utils] = An implementation of Linux sound support -- If audio device is detected
   - [open-vm-tools] = Open source implementation of VMware Tools -- If running in a WMware environment
   - [virtualbox-guest-utils] = VirtualBox Guest userspace utilities -- If running in a VirtualBox environment
