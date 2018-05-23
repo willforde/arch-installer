@@ -10,7 +10,7 @@ set -u
 # So make sure that the only drive connected, is the drive you want to install Arch Linux to.
 
 if [ ! -d "/sys/firmware/efi/" ]; then
-	echo "Sorry this script only supports UEFI systems"
+	echo "Sorry, this script only supports UEFI mode"
 	exit 1
 fi
 
@@ -294,14 +294,14 @@ genfstab -U ${VARTARGETDIR} >> ${VARTARGETDIR}/etc/fstab
 mkdir -pv ${VARTARGETDIR}/boot/efi/EFI/refind/drivers_x64 ${VARTARGETDIR}/boot/efi/EFI/BOOT/drivers_x64
 
 # Copy over refind system files
-cp ${VARTARGETDIR}/usr/share/refind/refind_x64.efi ${VARTARGETDIR}/boot/efi/EFI/refind/refind_x64.efi
-cp ${VARTARGETDIR}/usr/share/refind/refind_x64.efi ${VARTARGETDIR}/boot/efi/EFI/BOOT/bootx64.efi
-cp ${VARTARGETDIR}/usr/share/refind/drivers_x64/ext4_x64.efi ${VARTARGETDIR}/boot/efi/EFI/refind/drivers_x64/ext4_x64.efi
-cp ${VARTARGETDIR}/usr/share/refind/drivers_x64/ext4_x64.efi ${VARTARGETDIR}/boot/efi/EFI/BOOT/drivers_x64/ext4_x64.efi
-cp ${VARTARGETDIR}/usr/share/refind/refind.conf-sample ${VARTARGETDIR}/boot/efi/EFI/refind/refind.conf
-cp ${VARTARGETDIR}/usr/share/refind/refind.conf-sample ${VARTARGETDIR}/boot/efi/EFI/BOOT/refind.conf
-cp -r ${VARTARGETDIR}/usr/share/refind/icons ${VARTARGETDIR}/boot/efi/EFI/refind/
-cp -r ${VARTARGETDIR}/usr/share/refind/icons ${VARTARGETDIR}/boot/efi/EFI/BOOT/
+cp -v ${VARTARGETDIR}/usr/share/refind/refind_x64.efi ${VARTARGETDIR}/boot/efi/EFI/refind/refind_x64.efi
+cp -v ${VARTARGETDIR}/usr/share/refind/refind_x64.efi ${VARTARGETDIR}/boot/efi/EFI/BOOT/bootx64.efi
+cp -v ${VARTARGETDIR}/usr/share/refind/drivers_x64/ext4_x64.efi ${VARTARGETDIR}/boot/efi/EFI/refind/drivers_x64/ext4_x64.efi
+cp -v ${VARTARGETDIR}/usr/share/refind/drivers_x64/ext4_x64.efi ${VARTARGETDIR}/boot/efi/EFI/BOOT/drivers_x64/ext4_x64.efi
+cp -v ${VARTARGETDIR}/usr/share/refind/refind.conf-sample ${VARTARGETDIR}/boot/efi/EFI/refind/refind.conf
+cp -v ${VARTARGETDIR}/usr/share/refind/refind.conf-sample ${VARTARGETDIR}/boot/efi/EFI/BOOT/refind.conf
+cp -vr ${VARTARGETDIR}/usr/share/refind/icons ${VARTARGETDIR}/boot/efi/EFI/refind/
+cp -vr ${VARTARGETDIR}/usr/share/refind/icons ${VARTARGETDIR}/boot/efi/EFI/BOOT/
 
 # Register rEFInd bootloader
 efibootmgr --create --disk ${DEVICE} --part 1 --loader /EFI/refind/refind_x64.efi --label "rEFInd Boot Manager" --verbose
