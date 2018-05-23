@@ -349,7 +349,7 @@ arch-chroot ${VARTARGETDIR} systemctl enable ${DAEMONS}
 # Execute the post configurations within chroot
 cp post.sh ${VARTARGETDIR}/root/
 arch-chroot ${VARTARGETDIR} sh /root/post.sh ${ROOTPASSWORD} ${USERNAME} ${USERPASS}
-cp -v scripts ${VARTARGETDIR}/opt/install-scripts
+cp -rv scripts ${VARTARGETDIR}/opt/install-scripts
 rm ${VARTARGETDIR}/root/post.sh
 
 echo "Unmounting Drive Partitions"
