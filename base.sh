@@ -354,8 +354,8 @@ rm ${VARTARGETDIR}/root/post.sh
 
 echo "Unmounting Drive Partitions"
 swapoff ${DEVICE}2
-umount ${VARTARGETDIR}/boot/efi
-umount ${VARTARGETDIR}
+umount -v ${VARTARGETDIR}/boot/efi
+umount -v ${VARTARGETDIR}
 
 echo ""
 echo "##########################################"
