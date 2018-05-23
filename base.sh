@@ -255,18 +255,20 @@ sgdisk -n 1:0:+512M -t 1:ef00 -c 1:"EFI System Partition" ${DEVICE}
 mkfs.vfat ${DEVICE}1
 
 echo "Setup Swap Partition"
-sgdisk -n 2:0:+2G -t 2:8200 -c 1:"Swap Partition" ${DEVICE}
-mkswap ${DEVICE}2
-swapon ${DEVICE}2
+sgdisk -n 2:0:+2G -t 2:8200 -c 2:"Swap Partition" ${DEVICE}
 
 echo "Setup Root Partition"
-sgdisk -n 3:0:0 -t 3:8300 -c 1:"Linux / Partition" ${DEVICE}
-mkfs.ext4 -F -F ${DEVICE}3
+sgdisk -n 3:0:0 -t 3:8300 -c 3:"Linux / Partition" ${DEVICE}
+mkfs.ext4 -F ${DEVICE}3
 
 echo "# Mounting Partitions"
 mount -vo noatime ${DEVICE}3 ${VARTARGETDIR}
 mkdir -pv ${VARTARGETDIR}/boot/efi
 mount -v ${DEVICE}1 ${VARTARGETDIR}/boot/efi
+
+echo "Enable Swap Partition"
+mkswap ${DEVICE}2
+swapon ${DEVICE}2
 
 
 ######################
