@@ -231,6 +231,10 @@ export LANG=en_IE.UTF-8
 locale-gen
 echo ""
 
+# Install Required Packages if needed
+echo "Downloading and Install reflector installation requirements"
+pacman -Sy --noconfirm --needed reflector
+
 # Download and sort Mirrors List from Archlinux.org
 echo "Downloading and Ranking mirrors"
 reflector --verbose --protocol http --latest 200 --number 20 --sort rate --save /etc/pacman.d/mirrorlist
@@ -348,7 +352,7 @@ arch-chroot ${VARTARGETDIR} systemctl enable ${DAEMONS}
 # Execute the post configurations within chroot
 cp post.sh ${VARTARGETDIR}/root/
 arch-chroot ${VARTARGETDIR} sh /root/post.sh ${ROOTPASSWORD} ${USERNAME} ${USERPASS}
-cp -vr scripts ${VARTARGETDIR}/opt/install-scripts
+cp -v scripts ${VARTARGETDIR}/opt/install-scripts
 rm ${VARTARGETDIR}/root/post.sh
 
 echo "Unmounting Drive Partitions"
