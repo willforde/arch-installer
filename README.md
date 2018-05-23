@@ -40,9 +40,9 @@ helper called 'Yay' will also be installed. Below is the list of tasks that the 
 
 ### Extra Packages
   - [alsa-utils] = An implementation of Linux sound support -- If audio device is detected
-  - [open-vm-tools] = Open source implementation of VMware Tools -- If running in a vmware environment
-  - [virtualbox-guest-utils] = VirtualBox Guest userspace utilities -- If running in a virtualbox environment
-  - [qemu-guest-agent] = VirtualBox Guest userspace utilities -- If running in a virtualbox environment
+  - [open-vm-tools] = Open source implementation of VMware Tools -- If running in a WMware environment
+  - [virtualbox-guest-utils] = VirtualBox Guest userspace utilities -- If running in a VirtualBox environment
+  - [qemu-guest-agent] = VirtualBox Guest userspace utilities -- If running in a QEMU/KVM environment
 
 
 ## Download & Run

@@ -48,7 +48,7 @@ echo "Changing Root password"
 echo -e "${ROOTPASSWORD}\n${ROOTPASSWORD}" | passwd root
 
 # Create user acount
-useradd -m -G wheel,users -s /bin/zsh ${USERNAME}
+useradd -m -G wheel,users -s /bin/bash ${USERNAME}
 echo -e "${USERPASS}\n${USERPASS}" | passwd ${USERNAME}
 
 # Change sudoers to allow wheel group access to sudo with password
