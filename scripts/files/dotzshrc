@@ -43,7 +43,7 @@ function man() {
 # ------------------------------
 
 # Output system info using archey3 (https://lclarkmichalek.github.io/archey3/)
-[ -r /usr/bin/archey3 ] && clear && /usr/bin/archey3 -c cyan
+[ -r /usr/bin/archey3 ] && clear && /usr/bin/archey3
 
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
@@ -56,6 +56,7 @@ export ARCHFLAGS="-arch x86_64"
 alias pacin="sudo /usr/bin/pacman --needed -Sy"
 alias pacup="sudo /usr/bin/pacman -Syu"
 alias pacrm="sudo /usr/bin/pacman -Rs"
+alias pacinfo="/usr/bin/pacman -Si"
 
 # Protection aliases
 alias chown='chown --preserve-root'

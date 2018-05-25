@@ -80,7 +80,7 @@ alias diff='diff --color=auto'
 alias pacin="/usr/bin/pacman --needed -Sy"
 alias pacup="/usr/bin/pacman -Syu"
 alias pacrm="/usr/bin/pacman -Rs"
-alias pacinfo="/bin/pacman -Si"
+alias pacinfo="/usr/bin/pacman -Si"
 
 # Protection aliases
 alias chown='chown --preserve-root'
