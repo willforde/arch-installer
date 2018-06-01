@@ -17,10 +17,13 @@ source ${files}/support.sh
 
 # Install zsh & zsh extras
 sudo pacman -S --noconfirm --needed zsh zsh-syntax-highlighting zsh-theme-powerlevel9k pkgfile
-sudo pacman -S --noconfirm --needed --asdeps awesome-terminal-fonts
 pacman -Q oh-my-zsh-git >/dev/null 2>&1
 if [ $? != 0 ]; then
     yay -S --noconfirm oh-my-zsh-git
+fi
+pacman -Q nerd-fonts-complete >/dev/null 2>&1
+if [ $? != 0 ]; then
+    yay -S --noconfirm nerd-fonts-complete
 fi
 
 # Enable pkgfile timer to update db
