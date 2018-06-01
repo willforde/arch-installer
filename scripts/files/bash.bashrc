@@ -102,3 +102,14 @@ alias df='df -h'
 
 # Extras
 alias untar='tar -xvf'
+
+# ------------------------------
+# Misc
+# ------------------------------
+
+# Compilation flags
+export ARCHFLAGS="-arch x86_64"
+
+# Replace VI with nano as the default text editor
+export VISUAL=nano
+export EDITOR=nano
