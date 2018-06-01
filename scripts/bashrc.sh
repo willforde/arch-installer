@@ -8,17 +8,17 @@ if [[ $EUID == 0 ]]; then
     exit 1
 fi
 
-# Load common functions
-source /opt/install-scripts/files/support.sh
+files=$(dirname $0)/files
+source ${files}/support.sh
 
 # Ensure that extra bash functionality is installed
 sudo pacman -S --noconfirm --needed pkgfile
 sudo pacman -S --noconfirm --needed --asdeps bash-completion
 
 echo "Install custom bachrc"
-sudo install -vm 644 /opt/install-scripts/files/bash.bashrc /etc/bash.bashrc
-sudo install -vm 644 /opt/install-scripts/files/dotbashrc /etc/skel/.bashrc
-cpToUsers /opt/install-scripts/files/dotbashrc .bashrc
+sudo install -vm 644 ${files}/bash.bashrc /etc/bash.bashrc
+sudo install -vm 644 ${files}/dotbashrc /etc/skel/.bashrc
+cpToUsers ${files}/dotbashrc .bashrc
 
 # Change current users shell to Bash
 chsh -s /bin/bash
