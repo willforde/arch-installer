@@ -63,20 +63,6 @@ chmod 640 /etc/sudoers.d/10_wheel
 # Create any missing directories
 mkdir -p /etc/pacman.d/hooks
 
-# Keep currently installed & the last 2 cached
-cat > /etc/pacman.d/hooks/paccache.hook <<EOF
-[Trigger]
-Operation = Install
-Operation = Upgrade
-Type = Package
-Target = *
-
-[Action]
-Description = Keep currently installed & the last 2 cached...
-When = PostTransaction
-Exec = /usr/bin/paccache -rv
-EOF
-
 # Update rEFInd boot files on refind-efi
 cat > /etc/pacman.d/hooks/refind.hook <<EOF
 [Trigger]
@@ -89,6 +75,22 @@ Description = Updating rEFInd on ESP...
 When=PostTransaction
 Exec=/usr/bin/refind-install
 EOF
+
+# Keep currently installed & the last 2 cached
+if [ -f "/usr/bin/paccache" ]; then
+cat > /etc/pacman.d/hooks/paccache.hook <<EOF
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = *
+
+[Action]
+Description = Keep currently installed & the last 2 cached...
+When = PostTransaction
+Exec = /usr/bin/paccache -rv
+EOF
+fi
 
 # Update pacman-mirrorlist on upgrade
 if [ -f "/usr/bin/reflector" ]; then
