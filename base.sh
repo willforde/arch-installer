@@ -60,7 +60,7 @@ selectDisk()
 
 requestPackages()
 {
-	dialog --title "Optional Packages" --checklist "Please Select Optional Packages:" 15 55 5 1 "openssh" on 2 "reflector" on 3 "mlocate" on 4 "pkgfile" on 2>/tmp/menuitem
+	dialog --title "Optional Packages" --checklist "Please Select Optional Packages:" 15 55 5 1 "openssh" on 2 "reflector" on 3 "mlocate" on 4 "pkgfile" on 5 "pacman-contrib" on 2>/tmp/menuitem
 	handelCanceled $?
 	for pkg in $(cat /tmp/menuitem); do
 		if [ "$pkg" = 1 ]; then
@@ -83,6 +83,9 @@ requestPackages()
 		    # pkgfile	    = A pacman files metadata explorer		    = https://www.archlinux.org/packages/extra/x86_64/pkgfile/
 			EXTRAPKG="$EXTRAPKG pkgfile"
 			DAEMONS="$DAEMONS pkgfile-update.timer"
+		elif [ "$pkg" = 5 ]; then
+		    # pacman-contrib    = Contributed scripts and tools for pacman systems      = https://www.archlinux.org/packages/community/x86_64/pacman-contrib/
+		    EXTRAPKG="$EXTRAPKG pacman-contrib"
 		fi
 	done
 }
@@ -201,6 +204,10 @@ elif [ "$VM" == "qemu" ] || [ "$VM" == "kvm" ]; then
 	# qemu-guest-agent		= QEMU Guest Agent		= https://www.archlinux.org/packages/extra/x86_64/qemu-guest-agent/
 	EXTRAPKG="$EXTRAPKG qemu-guest-agent"
 	DAEMONS="$DAEMONS qemu-ga.service"
+
+elif [ "$VM" == "none" ] && [[ -n $(cat /proc/cpuinfo | grep -i "GenuineIntel") ]]; then
+	EXTRAPKG="$EXTRAPKG intel-ucode"
+	# intel-ucode				= Microcode update files for Intel CPUs			= https://www.archlinux.org/packages/extra/any/intel-ucode/
 fi
 
 
@@ -299,6 +306,27 @@ cp -v ${VARTARGETDIR}/usr/share/refind/refind.conf-sample ${VARTARGETDIR}/boot/e
 cp -v ${VARTARGETDIR}/usr/share/refind/refind.conf-sample ${VARTARGETDIR}/boot/efi/EFI/BOOT/refind.conf
 cp -vr ${VARTARGETDIR}/usr/share/refind/icons ${VARTARGETDIR}/boot/efi/EFI/refind/
 cp -vr ${VARTARGETDIR}/usr/share/refind/icons ${VARTARGETDIR}/boot/efi/EFI/BOOT/
+
+# Fetch uuid of root partition
+DISK_UUID=$(lsblk ${DEVICE}3 -o uuid -n)
+
+# Create refind boot options config with intel microcode added if intel-ucode is installed
+if [ -f "${VARTARGETDIR}/boot/intel-ucode.img" ]; then
+cat > ${VARTARGETDIR}/boot/refind_linux.conf <<EOF
+"Boot with standard options"        "rw root=UUID=${DISK_UUID}  initrd=/boot/intel-ucode.img initrd=/boot/initramfs-linux.img quiet loglevel=3 udev.log-priority=3"
+EOF
+else
+# Create without microcode added
+cat > ${VARTARGETDIR}/boot/refind_linux.conf <<EOF
+"Boot with standard options"        "rw root=UUID=${DISK_UUID}  initrd=/boot/initramfs-linux.img quiet loglevel=3 udev.log-priority=3"
+EOF
+fi
+
+# Create Boot options config
+cat >> ${VARTARGETDIR}/boot/refind_linux.conf <<EOF
+"Boot to single-user mode"          "rw root=UUID=${DISK_UUID}  single"
+"Boot to terminal"                  "rw root=UUID=${DISK_UUID}  systemd.unit=multi-user.target"
+EOF
 
 # Register rEFInd bootloader
 efibootmgr --create --disk ${DEVICE} --part 1 --loader /EFI/refind/refind_x64.efi --label "rEFInd Boot Manager" --verbose
