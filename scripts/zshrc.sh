@@ -21,9 +21,16 @@ pacman -Q oh-my-zsh-git >/dev/null 2>&1
 if [ $? != 0 ]; then
     yay -S --noconfirm oh-my-zsh-git
 fi
+
 pacman -Q nerd-fonts-complete >/dev/null 2>&1
 if [ $? != 0 ]; then
     yay -S --noconfirm nerd-fonts-complete
+fi
+
+# Install 'powerline-fonts' from community repo after a new release, v2.7 or greater
+pacman -Q powerline-fonts-git >/dev/null 2>&1
+if [ $? != 0 ]; then
+    yay -S --noconfirm --asdeps powerline-fonts-git
 fi
 
 # Enable pkgfile timer to update db
@@ -44,5 +51,7 @@ sudo install -vm 644 ${files}/dotzshrc /root/.zshrc
 cpToUsers ${files}/dotzshrc .zshrc
 
 # Change current users shell to ZSH
-chsh -s /bin/zsh
-echo "Please logout and login again for changes to take effect"
+if [ ! $(chkShell "${USER}") == "/bin/zsh" ]; then
+    chsh -s /bin/zsh
+    echo "Please logout and login again for changes to take effect"
+fi
