@@ -16,18 +16,14 @@ files=$(dirname $0)/files
 source ${files}/support.sh
 
 # Install zsh & zsh extras
-sudo pacman -S --noconfirm --needed pkgfile zsh zsh-syntax-highlighting zsh-theme-powerlevel9k
-sudo pacman -S --noconfirm --needed --asdeps awesome-terminal-fonts
-
+sudo pacman -S --noconfirm --needed zsh zsh-syntax-highlighting zsh-theme-powerlevel9k pkgfile
 pacman -Q oh-my-zsh-git >/dev/null 2>&1
 if [ $? != 0 ]; then
     yay -S --noconfirm oh-my-zsh-git
 fi
-
-# Install 'powerline-fonts' from community repo after a new release, v2.7 or greater
-pacman -Q powerline-fonts-git >/dev/null 2>&1
+pacman -Q nerd-fonts-complete >/dev/null 2>&1
 if [ $? != 0 ]; then
-    yay -S --noconfirm --asdeps powerline-fonts-git
+    yay -S --noconfirm nerd-fonts-complete
 fi
 
 # Enable pkgfile timer to update db
