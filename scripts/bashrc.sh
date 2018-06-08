@@ -21,5 +21,7 @@ sudo install -vm 644 ${files}/dotbashrc /etc/skel/.bashrc
 cpToUsers ${files}/dotbashrc .bashrc
 
 # Change current users shell to Bash
-chsh -s /bin/bash
-echo "Please logout and login again for changes to take effect"
+if [ ! $(chkShell "${USER}") == "/bin/bash" ]; then
+    chsh -s /bin/bash
+    echo "Please logout and login again for changes to take effect"
+fi
