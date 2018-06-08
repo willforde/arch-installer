@@ -6,7 +6,7 @@ set -u
 # Then configure rEFInd to use it
 # https://github.com/anthon38/refind-black
 
-# This script will only run when running as a normal user
+# This script will only run when running as a root user
 if [[ $EUID -ne 0 ]]; then
     echo "You need to be root to run this script."
     exit 1
