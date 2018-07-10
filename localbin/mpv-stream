@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+pacman -Q youtube-dl >/dev/null 2>&1
+if [ $? != 0 ]; then
+    echo "Missing dependency: youtube-dl"
+    while true; do
+        read -p "Install youtube-dl (y/n)?" yn
+        case ${yn} in
+            [Yy]* ) sudo pacman -S --noconfirm --needed youtube-dl;echo "";break;;
+            [Nn]* ) exit;;
+            * ) exit;;
+        esac
+    done
+fi
+
+youtube-dl $1 -o - | mpv -
