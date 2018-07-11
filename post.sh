@@ -92,6 +92,11 @@ Exec = /usr/bin/paccache -rv
 EOF
 fi
 
+
+###############
+## Reflector ##
+###############
+
 # Update pacman-mirrorlist on upgrade
 if [ -f "/usr/bin/reflector" ]; then
 cat > /etc/pacman.d/hooks/mirrorupgrade.hook <<EOF
@@ -106,6 +111,36 @@ When = PostTransaction
 Depends = reflector
 Exec = /bin/sh -c "reflector --country 'Ireland' --country 'United Kingdom' --latest 200 --age 24 --sort rate --save /etc/pacman.d/mirrorlist;  rm -f /etc/pacman.d/mirrorlist.pacnew"
 EOF
+
+cat > /etc/systemd/system/reflector.service <<EOF
+[Unit]
+Description=Pacman mirrorlist update
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/reflector --country 'Ireland' --country 'United Kingdom' --latest 200 --age 24 --sort rate --save /etc/pacman.d/mirrorlist
+
+[Install]
+RequiredBy=multi-user.target
+EOF
+
+cat > /etc/systemd/system/reflector.timer <<EOF
+[Unit]
+Description=Run reflector weekly
+
+[Timer]
+OnCalendar=Mon *-*-* 7:00:00
+RandomizedDelaySec=15h
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+EOF
+
+# Enable reflector timer
+systemctl enable reflector.timer
 fi
 
 
