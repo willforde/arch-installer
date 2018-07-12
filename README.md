@@ -34,6 +34,7 @@ helper called 'Yay' will also be installed. Below is the list of tasks that the 
   - [reflector] = Retrieve and filter the latest Pacman mirror list
   - [mlocate] = Merging locate/updatedb implementation
   - [pkgfile] = A pacman files metadata explorer
+  - [pacman-contrib] = Contributed scripts and tools for pacman systems
 
 #### Aur Packages
   - [yay] = Pacman wrapper and AUR helper written in go.
