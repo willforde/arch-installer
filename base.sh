@@ -324,8 +324,8 @@ fi
 
 # Create Boot options config
 cat >> ${VARTARGETDIR}/boot/refind_linux.conf <<EOF
-"Boot to single-user mode"          "rw root=UUID=${DISK_UUID}  single"
 "Boot to terminal"                  "rw root=UUID=${DISK_UUID}  systemd.unit=multi-user.target"
+"Boot to single-user mode"          "rw root=UUID=${DISK_UUID}  single"
 EOF
 
 # Register rEFInd bootloader
