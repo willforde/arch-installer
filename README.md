@@ -69,3 +69,4 @@ $ sh base.sh
 [yay]:https://aur.archlinux.org/packages/yay/
 [qemu-guest-agent]:https://www.archlinux.org/packages/extra/x86_64/qemu-guest-agent/
 [archlinux.org]:https://www.archlinux.org/download/
+[pacman-contrib]:https://www.archlinux.org/packages/community/x86_64/pacman-contrib/
