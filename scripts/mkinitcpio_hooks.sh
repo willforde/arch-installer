@@ -16,5 +16,14 @@ if [ -f "/etc/mkinitcpio.d/linux-lts.preset" ]; then
     sudo sed -i "s/^PRESETS=('default' 'fallback')/PRESETS=('default')/" /etc/mkinitcpio.d/linux-lts.preset
 fi
 
+# Remove old fallback files
+if [ -f "/boot/initramfs-linux-fallback.img" ]; then
+    rm -v /boot/initramfs-linux-fallback.img
+fi
+
+if [ -f "/boot/initramfs-linux-lts-fallback.img" ]; then
+    rm -v /boot/initramfs-linux-lts-fallback.img
+fi
+
 # Rebuild mkinitcpio
 sudo mkinitcpio -P
