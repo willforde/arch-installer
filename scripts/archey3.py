@@ -15,7 +15,7 @@ display_modules = de(), distro(), uname(r), fs(/), ram(), uname(n), packages(), 
 run_cmd = """
 
 # Output system info using archey3 (https://lclarkmichalek.github.io/archey3/)
-[ -r /usr/bin/archey3 ] && clear && /usr/bin/archey3
+[ -r /usr/bin/archey3 ] && clear && /usr/bin/archey3 --config=~/.config/archey3.cfg
 """
 
 # Add archey3 execute command to user shell config
