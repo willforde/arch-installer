@@ -2,8 +2,8 @@
 
 # Replace Hooks with custom set of hooks
 # This mainly just removes fsck & keyboard from hooks
-echo "Removing fsck & keyboard hooks"
-sudo sed -E 's/^HOOKS=(.+)/HOOKS=(base udev autodetect modconf block filesystems)/' /etc/mkinitcpio.conf
+echo "Removing fsck hooks"
+sudo sed -E 's/^HOOKS=(.+)/HOOKS=(base udev autodetect modconf block filesystems keyboard)/' /etc/mkinitcpio.conf
 echo ""
 
 # Remove fallback preset from linux mkinitcpio
