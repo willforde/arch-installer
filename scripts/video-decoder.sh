@@ -8,4 +8,6 @@ if [[ -n $(lspci | grep -i "VGA compatible controller: NVIDIA Corporation") ]]; 
 
 elif [[ -n $(lspci | grep -i "VGA compatible controller: Intel Corporation") ]]; then
     sudo pacman -S --noconfirm --needed libva-intel-driver libvdpau-va-gl
+else
+    echo "No Video decoding hardware found"
 fi
