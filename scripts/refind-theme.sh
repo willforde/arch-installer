@@ -42,7 +42,9 @@ hideui singleuser,hints,arrows,label
 banner themes/rEFInd-black/background.png
 selection_big   themes/rEFInd-black/selection_big.png
 selection_small themes/rEFInd-black/selection_small.png
+use_graphics_for osx,linux,windows
 showtools
+timeout 2
 EOF
 
 # Add include line to refind.conf if it don't exist, to enable this theme
