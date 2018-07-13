@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+set -e
+set -u
 
 cpToUsers()
 {
@@ -43,5 +45,31 @@ removefallback()
 
     if [ -f "/boot/initramfs-linux-lts-fallback.img" ]; then
         sudo rm -v /boot/initramfs-linux-lts-fallback.img
+    fi
+}
+
+check_yay()
+{
+    # This script will only run when running as a normal user
+    if [[ $EUID == 0 ]]; then
+        echo "This script must be run as a normal user."
+        exit 1
+    fi
+
+    # Install yay if missing
+    if [[ ! -r "/usr/bin/yay" ]]; then
+        # Create Build Directory
+        mkdir /tmp/build
+        cd /tmp/build/
+
+        # Install Yay AUR Helper
+        curl -SLO https://aur.archlinux.org/cgit/aur.git/snapshot/yay.tar.gz
+        tar -zxvf yay.tar.gz
+        cd yay
+        makepkg -s -i --noconfirm
+
+        # Cleanup
+        cd ../..
+        rm -r build
     fi
 }
