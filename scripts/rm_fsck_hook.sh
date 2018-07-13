@@ -16,3 +16,13 @@ removefallback
 
 # Rebuild mkinitcpio
 sudo mkinitcpio -P
+
+# Copy over systemd fsck services
+echo "Copying systemd-fsck services"
+cp /usr/lib/systemd/system/systemd-fsck@.service /etc/systemd/system/systemd-fsck@.service
+cp /usr/lib/systemd/system/systemd-fsck-root.service /etc/systemd/system/systemd-fsck-root.service
+
+# Modify services to add StandardOutput and StandardError
+echo "Modifing systemd-fsck services"
+sed -i 's/TimeoutSec=0/StandardOutput=null\nStandardError=journal+console\nTimeoutSec=0/' /etc/systemd/system/systemd-fsck@.service
+sed -i 's/TimeoutSec=0/StandardOutput=null\nStandardError=journal+console\nTimeoutSec=0/' /etc/systemd/system/systemd-fsck-root.service
