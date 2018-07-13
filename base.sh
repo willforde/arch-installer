@@ -313,12 +313,12 @@ DISK_UUID=$(lsblk ${DEVICE}3 -o uuid -n)
 # Create refind boot options config with intel microcode added if intel-ucode is installed
 if [ -f "${VARTARGETDIR}/boot/intel-ucode.img" ]; then
 cat > ${VARTARGETDIR}/boot/refind_linux.conf <<EOF
-"Boot with standard options"        "rw root=UUID=${DISK_UUID}  initrd=/boot/intel-ucode.img initrd=/boot/initramfs-linux.img quiet loglevel=3 udev.log-priority=3"
+"Boot to graphical"        "rw root=UUID=${DISK_UUID}  initrd=/boot/intel-ucode.img initrd=/boot/initramfs-linux.img quiet loglevel=3 udev.log-priority=3"
 EOF
 else
 # Create without microcode added
 cat > ${VARTARGETDIR}/boot/refind_linux.conf <<EOF
-"Boot with standard options"        "rw root=UUID=${DISK_UUID}  initrd=/boot/initramfs-linux.img quiet loglevel=3 udev.log-priority=3"
+"Boot to graphical"        "rw root=UUID=${DISK_UUID}  initrd=/boot/initramfs-linux.img quiet loglevel=3 udev.log-priority=3"
 EOF
 fi
 
