@@ -166,5 +166,5 @@ sudo -u nobody makepkg -s -i --noconfirm
 cd ../..
 rm -r build
 
-# Change sudoers to allow wheel group access to sudo with password
+# Remove nobody user from sudo
 rm /etc/sudoers.d/99_nobody
