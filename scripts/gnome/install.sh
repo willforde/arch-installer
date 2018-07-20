@@ -62,7 +62,6 @@ sudo pacman -S --noconfirm --needed --asdeps gvfs-google gvfs-goa gvfs-smb gvfs-
 
 # Set Nautilus to show size of folder and files
 dbus-launch gsettings set org.gnome.nautilus.icon-view captions "['none', 'size', 'none']"
-dbus-launch gsettings set org.gtk.settings.file-chooser short-directores-first true
 
 
 #####################
