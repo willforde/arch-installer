@@ -8,6 +8,7 @@ OPTIONALDEP="gnome-control-center gnome-keyring"
 
 # Expanded install
 PKGS="$PKGS gnome-{shell-extensions,backgrounds,calculator,screenshot,contacts,tweaks,user-docs}"
+PKGS="$PKGS gnome-shell-extensions gnome-backgrounds gnome-calculator gnome-screenshot gnome-contacts gnome-tweaks gnome-user-docs"
 
 # Apps
 PKGS="$PKGS gparted baobab evince eog filezilla"
