@@ -15,7 +15,6 @@ fi
 sudo mkdir -p /root/.config/nano /etc/skel/.config/nano
 echo 'include "/usr/share/nano-syntax-highlighting/*.nanorc"' | sudo tee /root/.config/nano/nanorc >/dev/null
 echo 'set nowrap' | sudo tee -a /root/.config/nano/nanorc >/dev/null
-echo 'set autoindent' | sudo tee -a /root/.config/nano/nanorc >/dev/null
 echo 'set boldtext' | sudo tee -a /root/.config/nano/nanorc >/dev/null
 echo 'set linenumbers' | sudo tee -a /root/.config/nano/nanorc >/dev/null
 echo 'set smooth' | sudo tee -a /root/.config/nano/nanorc >/dev/null
