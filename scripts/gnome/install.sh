@@ -3,19 +3,15 @@ set -e
 set -u
 
 # Base gnome install
-PKGS="gnome-shell gnome-system-monitor"
-OPTIONALDEP="gnome-control-center gnome-keyring"
+sudo pacman -S --noconfirm --needed gnome-shell gnome-system-monitor
+sudo pacman -S --noconfirm --needed --asdeps gnome-control-center gnome-keyring
 
 # Expanded install
-PKGS="$PKGS gnome-shell-extensions gnome-backgrounds gnome-calculator gnome-screenshot gnome-contacts gnome-tweaks gnome-user-docs"
-
-# Apps
-PKGS="$PKGS gparted baobab evince eog filezilla"
-OPTIONALDEP="$OPTIONALDEP dosfstools exfat-utils ntfs-3g xfsprogs polkit gpart"
+sudo pacman -S --noconfirm --needed gnome-shell-extensions gnome-backgrounds gnome-calculator gnome-screenshot gnome-contacts gnome-tweaks gnome-user-docs
 
 # Install required packages
-sudo pacman -S --noconfirm --needed ${PKGS}
-sudo pacman -S --noconfirm --needed --asdeps ${OPTIONALDEP}
+sudo pacman -S --noconfirm --needed gparted baobab evince eog filezilla atom firefox-i18n-en-gb chromium
+sudo pacman -S --noconfirm --needed --asdeps dosfstools exfat-utils ntfs-3g xfsprogs polkit gpart ttf-dejavu
 
 # Settings
 dbus-launch gsettings set org.gnome.desktop.notifications show-in-lock-screen false
@@ -103,3 +99,4 @@ dbus-launch gsettings set "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal
 
 # Hide Menu bar
 dbus-launch gsettings set org.gnome.Terminal.Legacy.Settings default-show-menubar false
+
