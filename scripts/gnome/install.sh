@@ -17,6 +17,13 @@ sudo pacman -S --noconfirm --needed --asdeps dosfstools exfat-utils ntfs-3g xfsp
 dbus-launch gsettings set org.gnome.desktop.notifications show-in-lock-screen false
 dbus-launch gsettings set org.gnome.desktop.datetime automatic-timezone true
 dbus-launch gsettings set org.gnome.desktop.screensaver lock-enabled false
+dbus-launch gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'ie')]"
+dbus-launch gsettings set org.gnome.desktop.privacy remember-recent-files false
+dbus-launch gsettings set org.gnome.desktop.privacy remove-old-trash-files true
+dbus-launch gsettings set org.gnome.desktop.privacy remove-old-temp-files true
+dbus-launch gsettings set org.gnome.desktop.privacy old-files-age 14
+dbus-launch gsettings set org.gnome.desktop.session idle-delay 0
+dbus-launch gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 3600
 
 
 #####################
