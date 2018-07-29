@@ -2,6 +2,11 @@
 set -e
 set -u
 
+# Load common functions
+files=$(dirname $0)/files
+source ${files}/support.sh
+check_yay
+
 # Base gnome
 sudo pacman -S --noconfirm --needed gnome-shell gnome-system-monitor
 sudo pacman -S --noconfirm --needed --asdeps gnome-control-center gnome-keyring
