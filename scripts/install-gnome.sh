@@ -86,22 +86,6 @@ sudo pacman -S --noconfirm --needed --asdeps gvfs-google gvfs-goa gvfs-smb gvfs-
 dbus-launch gsettings set org.gnome.nautilus.icon-view captions "['none', 'size', 'none']"
 
 
-#####################
-## Network Manager ##
-#####################
-
-# Install network manager
-sudo pacman -S --noconfirm --needed networkmanager
-
-# Disable Systemd network first
-sudo systemctl disable systemd-networkd.service systemd-resolved.service
-sudo systemctl stop systemd-networkd.service systemd-resolved.service
-sudo rm /etc/systemd/network/20-wired.network /etc/resolv.conf
-sudo systemctl enable NetworkManager.service
-sudo systemctl start NetworkManager.service
-sleep 3
-
-
 ##############
 ## Terminal ##
 ##############
@@ -148,3 +132,18 @@ dbus-launch gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive
 # Enable extensions and set favorites
 dbus-launch gsettings set org.gnome.shell enabled-extensions "['user-theme@gnome-shell-extensions.gcampax.github.com', 'unredirect@vaina.lt', 'weather-extension@xeked.com']"
 dbus-launch gsettings set org.gnome.shell favorite-apps "['org.gnome.Terminal.desktop', 'firefox.desktop', 'chromium.desktop', 'org.gnome.Nautilus.desktop']"
+
+
+#####################
+## Network Manager ##
+#####################
+
+# Install network manager
+sudo pacman -S --noconfirm --needed networkmanager
+
+# Disable Systemd network first
+sudo systemctl disable systemd-networkd.service systemd-resolved.service
+sudo systemctl stop systemd-networkd.service systemd-resolved.service
+sudo rm /etc/systemd/network/20-wired.network /etc/resolv.conf
+sudo systemctl enable NetworkManager.service
+sudo systemctl start NetworkManager.service
