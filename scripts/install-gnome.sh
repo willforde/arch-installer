@@ -2,28 +2,42 @@
 set -e
 set -u
 
-# Base gnome install
+# Base gnome
 sudo pacman -S --noconfirm --needed gnome-shell gnome-system-monitor
 sudo pacman -S --noconfirm --needed --asdeps gnome-control-center gnome-keyring
 
-# Expanded install
+# Expanded gnome
 sudo pacman -S --noconfirm --needed gnome-shell-extensions gnome-backgrounds gnome-calculator gnome-screenshot gnome-contacts gnome-tweaks gnome-user-docs
 
-# Install required packages
-sudo pacman -S --noconfirm --needed gparted baobab evince eog filezilla atom firefox-i18n-en-gb chromium
-sudo pacman -S --noconfirm --needed --asdeps dosfstools exfat-utils ntfs-3g xfsprogs polkit gpart ttf-dejavu
+# Third party applications
+sudo pacman -S --noconfirm --needed gparted baobab evince eog filezilla atom firefox-i18n-en-gb chromium deluge gimp mpv youtube-dl pycharm-community-edition remmina variety kodi
+sudo pacman -S --noconfirm --needed --asdeps dosfstools exfat-utils ntfs-3g xfsprogs polkit gpart ttf-dejavu python2-notify pygtk librsvg freerdp gdb libnfs lsb-release
 
-# Settings
-dbus-launch gsettings set org.gnome.desktop.notifications show-in-lock-screen false
-dbus-launch gsettings set org.gnome.desktop.datetime automatic-timezone true
-dbus-launch gsettings set org.gnome.desktop.screensaver lock-enabled false
-dbus-launch gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'ie')]"
-dbus-launch gsettings set org.gnome.desktop.privacy remember-recent-files false
-dbus-launch gsettings set org.gnome.desktop.privacy remove-old-trash-files true
-dbus-launch gsettings set org.gnome.desktop.privacy remove-old-temp-files true
-dbus-launch gsettings set org.gnome.desktop.privacy old-files-age 14
-dbus-launch gsettings set org.gnome.desktop.session idle-delay 0
-dbus-launch gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 3600
+# Install jdownload download manager
+yay -S --noconfirm jdownloader2
+
+
+################
+## Extensions ##
+################
+
+# Disable gnome unredirect to fix slow video playback problems
+yay -S --noconfirm gnome-shell-extension-disable-unredirect
+
+# Install weather extension for gnome
+yay -S --noconfirm gnome-shell-extension-weather-git
+
+
+############
+## Themes ##
+############
+
+sudo pacman -S --noconfirm --needed adapta-gtk-theme
+yay -S --noconfirm numix-square-icon-theme-git
+
+dbus-launch gsettings set org.gnome.shell.extensions.user-theme name "Adapta-Nokto"
+dbus-launch gsettings set org.gnome.desktop.interface gtk-theme "Adapta-Nokto"
+dbus-launch gsettings set org.gnome.desktop.interface icon-theme "Numix-Square"
 
 
 #####################
@@ -107,3 +121,25 @@ dbus-launch gsettings set "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal
 # Hide Menu bar
 dbus-launch gsettings set org.gnome.Terminal.Legacy.Settings default-show-menubar false
 
+
+###############
+## GSettings ##
+###############
+
+# Settings
+dbus-launch gsettings set org.gnome.desktop.interface clock-show-date true
+dbus-launch gsettings set org.gnome.desktop.notifications show-in-lock-screen false
+dbus-launch gsettings set org.gnome.desktop.datetime automatic-timezone true
+dbus-launch gsettings set org.gnome.desktop.screensaver lock-enabled false
+dbus-launch gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'ie')]"
+dbus-launch gsettings set org.gnome.desktop.privacy remember-recent-files false
+dbus-launch gsettings set org.gnome.desktop.privacy remove-old-trash-files true
+dbus-launch gsettings set org.gnome.desktop.privacy remove-old-temp-files true
+dbus-launch gsettings set org.gnome.desktop.privacy old-files-age 14
+dbus-launch gsettings set org.gnome.desktop.session idle-delay 0
+dbus-launch gsettings set org.gnome.desktop.wm.preferences action-middle-click-titlebar "minimize"
+dbus-launch gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 3600
+
+# Enable extensions and set favorites
+dbus-launch gsettings set org.gnome.shell enabled-extensions "['user-theme@gnome-shell-extensions.gcampax.github.com', 'unredirect@vaina.lt', 'weather-extension@xeked.com']"
+dbus-launch gsettings set org.gnome.shell favorite-apps "['org.gnome.Terminal.desktop', 'firefox.desktop', 'chromium.desktop', 'org.gnome.Nautilus.desktop']"
