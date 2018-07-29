@@ -147,3 +147,8 @@ sudo systemctl stop systemd-networkd.service systemd-resolved.service
 sudo rm /etc/systemd/network/20-wired.network /etc/resolv.conf
 sudo systemctl enable NetworkManager.service
 sudo systemctl start NetworkManager.service
+
+echo ""
+echo "##########################################"
+echo "##               All Done               ##"
+echo "##########################################"
