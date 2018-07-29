@@ -23,7 +23,7 @@ echo "Starting Firefox if not already runing"
 FOUND=$(ps -A | grep "firefox")
 if [[ -z "$FOUND" ]]; then
     firefox &
-    sleep 3
+    sleep 5
     FOUND=$(ps -A | grep "firefox")
     if [[ -z "$FOUND" ]]; then
         echo "Unable to find firefox runing process id"
