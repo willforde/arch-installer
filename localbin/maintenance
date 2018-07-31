@@ -1,9 +1,24 @@
 #!/usr/bin/env bash
 
-# Dependencies
-yay -S profile-cleaner
+# Clean firefox user profile
+if [ -f "/usr/bin/firefox" ]; then
+    profile-cleaner f # firefox
+fi
 
-# Clean firefox & chromium profiles
-profile-cleaner f # firefox
-profile-cleaner c # chromium
+# Clean chromium user profile
+if [ -f "/usr/bin/chromium" ]; then
+    profile-cleaner c # chromium
+fi
 
+# Remove profile crashrecovery directorys
+if [ -f "/usr/bin/psd" ]; then
+    psd clean
+fi
+
+# Remove cache crashrecovery directorys
+if [ -f "/usr/bin/asd" ]; then
+    asd clean
+fi
+
+# Use yay to remove orphan packages
+yay -c --noconfirm
