@@ -15,7 +15,7 @@ sudo pacman -S --noconfirm --needed --asdeps gnome-control-center gnome-keyring
 sudo pacman -S --noconfirm --needed gnome-shell-extensions gnome-backgrounds gnome-calculator gnome-screenshot gnome-contacts gnome-tweaks gnome-user-docs
 
 # Third party applications
-sudo pacman -S --noconfirm --needed gparted baobab evince eog filezilla atom firefox-i18n-en-gb chromium deluge gimp mpv youtube-dl pycharm-community-edition remmina variety kodi
+sudo pacman -S --noconfirm --needed gparted baobab evince eog filezilla atom firefox-i18n-en-gb chromium deluge gimp mpv youtube-dl pycharm-community-edition remmina variety kodi git
 sudo pacman -S --noconfirm --needed --asdeps dosfstools exfat-utils ntfs-3g xfsprogs polkit gpart ttf-dejavu python2-notify pygtk librsvg freerdp gdb libnfs lsb-release
 
 # Install jdownload download manager
@@ -29,8 +29,15 @@ yay -S --noconfirm jdownloader2
 # Disable gnome unredirect to fix slow video playback problems
 yay -S --noconfirm gnome-shell-extension-disable-unredirect
 
-# Install weather extension for gnome
-yay -S --noconfirm gnome-shell-extension-weather-git
+# Manually install openweather to fix git url before install
+yay -G gnome-shell-extension-openweather-git
+cd gnome-shell-extension-openweather-git
+# Switch from github repo to gitlab repo
+sed -i "s|https://github.com/jenslody/gnome|https://gitlab.com/jenslody/gnome|" PKGBUILD
+makepkg -si
+yay -c --noconfirm
+cd ..
+rm gnome-shell-extension-openweather-git
 
 
 ############
