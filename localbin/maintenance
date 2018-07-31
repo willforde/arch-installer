@@ -20,5 +20,8 @@ if [ -f "/usr/bin/asd" ]; then
     asd clean
 fi
 
+# Remove packages that are no longer installed
+sudo pacman --clean
+
 # Use yay to remove orphan packages
 yay -c --noconfirm
