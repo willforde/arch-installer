@@ -1,13 +1,12 @@
 ﻿#!/usr/bin/env bash
-set -e
-set -u
-
 # This is the base script that will install a mostly barebone Arch Linux system.
 # Installed packages are base, base-devel, openssh, mlocate and reflector.
 # The bootloader that will be installed is rEFInd.
 #
 # WARNING: This script will wipe whatever drive is mapped to '/dev/sda'.
 # So make sure that the only drive connected, is the drive you want to install Arch Linux to.
+set -e
+set -u
 
 if [ ! -d "/sys/firmware/efi/" ]; then
 	echo "Sorry, this script only supports UEFI mode"
@@ -168,12 +167,20 @@ if [[ -n $(lspci | grep -i "Multimedia audio controller:") ]] || [[ -n $(lspci |
 	EXTRAPKG="$EXTRAPKG alsa-utils"
 fi
 
+# Check GPU the system is using
+if [[ -n $(lspci | grep -i "VGA compatible controller: NVIDIA Corporation") ]]; then
+    EXTRAPKG="$EXTRAPKG nvidia"
+    DECODER='vdpau'
+fi
+
 
 ####################
 ## Virtualization ##
 ####################
 
+set +e
 VM=$(systemd-detect-virt)
+set -e
 
 # Check for a VMware virtual machine
 if [ "$VM" == "vmware" ]; then
