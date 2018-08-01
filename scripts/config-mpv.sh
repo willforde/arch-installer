@@ -15,6 +15,7 @@ if [[ -n $(lspci | grep -i "VGA compatible controller: Intel Corporation") ]]; t
     sudo pacman -S --noconfirm --needed libva-intel-driver libvdpau-va-gl
 fi
 
+echo "Writing out mpv configuration"
 cat > /tmp/mpv.conf <<EOF
 profile=opengl-hq
 hwdec=${DECODER}
@@ -22,5 +23,6 @@ audio-channels=6
 border=no
 sid=no
 EOF
+
 sudo mv /tmp/mpv.conf /etc/mpv/mpv.conf
 sudo chown root:root /etc/mpv/mpv.conf
