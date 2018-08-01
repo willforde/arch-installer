@@ -28,16 +28,18 @@ yay -S --noconfirm jdownloader2
 
 # Disable gnome unredirect to fix slow video playback problems
 yay -S --noconfirm gnome-shell-extension-disable-unredirect
+cd /tmp
 
 # Manually install openweather to fix git url before install
 yay -G gnome-shell-extension-openweather-git
 cd gnome-shell-extension-openweather-git
+
 # Switch from github repo to gitlab repo
 sed -i "s|https://github.com/jenslody/gnome|https://gitlab.com/jenslody/gnome|" PKGBUILD
-makepkg -si
+makepkg -si --noconfirm
 yay -c --noconfirm
 cd ..
-rm gnome-shell-extension-openweather-git
+rm -rf gnome-shell-extension-openweather-git
 
 
 ############
