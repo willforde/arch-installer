@@ -1,4 +1,5 @@
-﻿#!/usr/bin/env bash
+#!/usr/bin/env bash
+
 # This is the base script that will install a mostly barebone Arch Linux system.
 # Installed packages are base, base-devel, openssh, mlocate and reflector.
 # The bootloader that will be installed is rEFInd.
