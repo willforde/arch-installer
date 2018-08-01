@@ -139,7 +139,7 @@ dbus-launch gsettings set org.gnome.desktop.wm.preferences action-middle-click-t
 dbus-launch gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 3600
 
 # Enable extensions and set favorites
-dbus-launch gsettings set org.gnome.shell enabled-extensions "['user-theme@gnome-shell-extensions.gcampax.github.com', 'unredirect@vaina.lt', 'weather-extension@xeked.com']"
+dbus-launch gsettings set org.gnome.shell enabled-extensions "['user-theme@gnome-shell-extensions.gcampax.github.com', 'unredirect@vaina.lt', 'openweather-extension@jenslody.de']"
 dbus-launch gsettings set org.gnome.shell favorite-apps "['org.gnome.Terminal.desktop', 'firefox.desktop', 'chromium.desktop', 'org.gnome.Nautilus.desktop']"
 
 
