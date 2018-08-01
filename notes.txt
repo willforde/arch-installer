@@ -1,0 +1,6 @@
+Add 'nowatchdog' to kernel parmeters to disable watchgod witch may slow things down unnecessarily
+See: https://wiki.archlinux.org/index.php/Improving_performance#Watchdogs
+
+After you disabled watchdogs, you can optionally avoid the loading of the module responsible
+of the hardware watchdog, too. Do it by blacklisting the related module, e.g. iTCO_wdt.
+echo 'modprobe.blacklist=iTCO_wdt' >> /etc/modprobe.d/blacklist.conf
