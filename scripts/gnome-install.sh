@@ -41,6 +41,11 @@ yay -c --noconfirm
 cd ..
 rm -rf gnome-shell-extension-openweather-git
 
+# Openweather settings
+dbus-launch gsettings set org.gnome.shell.extensions.openweather pressure-unit "kPa"
+dbus-launch gsettings set org.gnome.shell.extensions.openweather wind-speed-unit "kph"
+dbus-launch gsettings set org.gnome.shell.extensions.openweather unit "celsius"
+
 
 ############
 ## Themes ##
