@@ -4,3 +4,15 @@ See: https://wiki.archlinux.org/index.php/Improving_performance#Watchdogs
 After you disabled watchdogs, you can optionally avoid the loading of the module responsible
 of the hardware watchdog, too. Do it by blacklisting the related module, e.g. iTCO_wdt.
 echo 'modprobe.blacklist=iTCO_wdt' >> /etc/modprobe.d/blacklist.conf
+
+# Firefox Extensions
+AutocopySelection2Clipboard   # Auto copy the selected text to clipboard                # https://addons.mozilla.org/en-US/firefox/addon/autocopyselection2clipboard/
+LastPass                      # Allow access to the lastpass password manager/database  # https://www.lastpass.com/
+Stylus                        # For custom styls of websites that improve the apperence # https://addons.mozilla.org/en-US/firefox/addon/styl-us/
+uBlock Origin                 # Simple ad blocker                                       # https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/
+
+# Stylish Styles
+Google Variety                # Add some realy nice images to the google home page      # https://userstyles.org/styles/128178/google-variety
+Material Feedly               # Improve the layout of the feedly site                   # https://userstyles.org/styles/112756/material-feedly
+TwitchTV Lights Out           # Changes twitchtv to use a dark background               # https://userstyles.org/styles/151470/twitchtv-lights-out-new
+GitHub Dark 2.0               # Changes github to use a dark background                 # https://userstyles.org/styles/128271/github-dark-2-0
