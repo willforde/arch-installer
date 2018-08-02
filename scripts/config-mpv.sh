@@ -6,13 +6,13 @@ sudo pacman -S --noconfirm --needed mpv
 DECODER='vaapi'
 
 # Check GPU the system is using
-if [[ -n $(lspci | grep -i "VGA compatible controller: NVIDIA Corporation") ]]; then
-    sudo pacman -S --noconfirm --needed nvidia libva-vdpau-driver
+if pacman -Qq nvidia-utils; then
+    sudo pacman -S --noconfirm --needed --asdeps libva-vdpau-driver
     DECODER='vdpau'
-fi
 
-if [[ -n $(lspci | grep -i "VGA compatible controller: Intel Corporation") ]]; then
-    sudo pacman -S --noconfirm --needed libva-intel-driver libvdpau-va-gl
+elif [[ -n $(lspci | grep -i "VGA compatible controller: Intel Corporation") ]]; then
+    sudo pacman -S --noconfirm --needed --asdeps libva-intel-driver
+    sudo pacman -S --noconfirm --needed libvdpau-va-gl # This really need to be a depenancy of libva-intel-driver
 fi
 
 echo "Writing out mpv configuration"
