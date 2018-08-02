@@ -12,6 +12,7 @@ check_yay
 
 # Install zsh & zsh extras
 sudo pacman -S --noconfirm --needed zsh zsh-syntax-highlighting zsh-theme-powerlevel9k pkgfile
+sudo pacman -S --noconfirm --needed --asdeps awesome-terminal-fonts
 if [[ ! -d "/usr/share/oh-my-zsh" ]]; then
     yay -S --noconfirm oh-my-zsh-git
 fi
