@@ -162,6 +162,10 @@ sudo rm /etc/systemd/network/20-wired.network /etc/resolv.conf
 sudo systemctl enable NetworkManager.service
 sudo systemctl start NetworkManager.service
 
+
+# Cleanup
+yay -c
+
 echo ""
 echo "##########################################"
 echo "##               All Done               ##"
