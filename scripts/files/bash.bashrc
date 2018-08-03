@@ -45,6 +45,9 @@ man() {
 # Try to enable the "Command not found" hook ("pacman -S pkgfile" to install it).
 [ -r /usr/share/doc/pkgfile/command-not-found.bash ] && . /usr/share/doc/pkgfile/command-not-found.bash
 
+# Output system info using archey3 (https://lclarkmichalek.github.io/archey3/)
+[ -r /usr/bin/archey3 ] && clear && /usr/bin/archey3 --config=~/.config/archey3.cfg
+
 # Don't put duplicate lines or lines starting with space in the history.
 HISTCONTROL=ignoreboth
 

@@ -41,7 +41,7 @@ fi
 # Install all the zshrc files
 sudo install -vm 644 ${files}/dotzshrc /etc/skel/.zshrc
 sudo install -vm 644 ${files}/dotzshrc /root/.zshrc
-cpToUsers ${files}/dotzshrc .zshrc
+install -vm 644 ${files}/dotzshrc ~/.zshrc
 
 # Change current users shell to ZSH
 if [ ! $(chkShell "${USER}") == "/bin/zsh" ]; then

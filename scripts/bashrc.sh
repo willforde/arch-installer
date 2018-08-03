@@ -12,7 +12,11 @@ sudo pacman -S --noconfirm --needed --asdeps bash-completion
 echo "Install custom bachrc"
 sudo install -vm 644 ${files}/bash.bashrc /etc/bash.bashrc
 sudo install -vm 644 ${files}/dotbashrc /etc/skel/.bashrc
-cpToUsers ${files}/dotbashrc .bashrc
+
+# Install localized .bashrc for normal users
+if [[ $EUID -ne 0 ]]; then
+    install -vm 644 ${files}/dotbashrc ~/.bashrc
+fi
 
 # Change current users shell to Bash
 if [ ! $(chkShell "${USER}") == "/bin/bash" ]; then
