@@ -17,7 +17,9 @@ fi
 
 echo "Writing out mpv configuration"
 cat > /tmp/mpv.conf <<EOF
-profile=opengl-hq
+profile=gpu-hq
+scale=ewa_lanczossharp
+cscale=ewa_lanczossharp
 hwdec=${DECODER}
 audio-channels=6
 border=no
