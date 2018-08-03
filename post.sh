@@ -35,24 +35,17 @@ mkdir -p /root/.config/
 mkdir -p /etc/skel/.config/
 
 
-###################
-## User Accounts ##
-###################
+##########
+## Bash ##
+##########
 
-ROOTPASSWORD=$1
-USERNAME=$2
-USERPASS=$3
+# Ensure that extra bash functionality is installed
+pacman -S --noconfirm --needed pkgfile
+pacman -S --noconfirm --needed --asdeps bash-completion
 
-echo "Changing Root password"
-echo -e "${ROOTPASSWORD}\n${ROOTPASSWORD}" | passwd root
-
-# Create user acount
-useradd -m -G wheel,users -s /bin/bash ${USERNAME}
-echo -e "${USERPASS}\n${USERPASS}" | passwd ${USERNAME}
-
-# Change sudoers to allow wheel group access to sudo with password
-echo '%wheel ALL=(ALL) ALL' > /etc/sudoers.d/10_wheel
-chmod 640 /etc/sudoers.d/10_wheel
+echo "Install custom bachrc"
+install -vm 644 /opt/install-scripts/bash.bashrc /etc/bash.bashrc
+install -vm 644 /opt/install-scripts/dotbashrc /etc/skel/.bashrc
 
 
 ##################
@@ -143,28 +136,54 @@ systemctl enable reflector.timer
 fi
 
 
+###################
+## User Accounts ##
+###################
+
+ROOTPASSWORD=$1
+USERNAME=$2
+USERPASS=$3
+
+echo "Changing Root password"
+echo -e "${ROOTPASSWORD}\n${ROOTPASSWORD}" | passwd root
+
+# Create user acount
+useradd -m -G wheel,users -s /bin/bash ${USERNAME}
+echo -e "${USERPASS}\n${USERPASS}" | passwd ${USERNAME}
+
+# Change sudoers to allow wheel group access to sudo with password
+echo '%wheel ALL=(ALL) ALL' > /etc/sudoers.d/10_wheel
+chmod 640 /etc/sudoers.d/10_wheel
+
+
 ################
 ## Aur Helper ##
 ################
 
-# Change sudoers to allow nobody user access to sudo without password
-echo 'nobody ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/99_nobody
-
-# Create Build Directorys and set permissions
-mkdir /tmp/build
-chgrp nobody /tmp/build
-chmod g+ws /tmp/build
-setfacl -m u::rwx,g::rwx /tmp/build
-setfacl -d --set u::rwx,g::rwx,o::- /tmp/build
+sudo -u ${USERNAME} mkdir /tmp/build
 cd /tmp/build/
 
-# Install Yay AUR Helper
-sudo -u nobody curl -SLO https://aur.archlinux.org/cgit/aur.git/snapshot/yay.tar.gz
-sudo -u nobody tar -zxvf yay.tar.gz
+sudo -u ${USERNAME} curl -SLO https://aur.archlinux.org/cgit/aur.git/snapshot/yay.tar.gz
+sudo -u ${USERNAME} tar -zxvf yay.tar.gz
 cd yay
-sudo -u nobody makepkg -s -i --noconfirm
+sudo -u ${USERNAME} makepkg -s -i --noconfirm
 cd ../..
-rm -r build
+rm -rf build
 
-# Remove nobody user from sudo
-rm /etc/sudoers.d/99_nobody
+
+##########
+## Nano ##
+##########
+
+# Install syntax highlighting scripts
+sudo -u willforde yay -S --noconfirm nano-syntax-highlighting-git
+
+# Enable Support for All Highlighters and Disable text wraping
+mkdir -p /root/.config/nano /etc/skel/.config/nano /home/${USERNAME}/.config/nano/
+echo 'include "/usr/share/nano-syntax-highlighting/*.nanorc"' > /root/.config/nano/nanorc
+echo 'set nowrap' >> /root/.config/nano/nanorc
+echo 'set boldtext' >> /root/.config/nano/nanorc
+echo 'set linenumbers' >> /root/.config/nano/nanorc
+echo 'set smooth' >> /root/.config/nano/nanorc
+cp -v /root/.config/nano/nanorc /etc/skel/.config/nano/nanorc
+cp -v /root/.config/nano/nanorc /home/${USERNAME}/.config/nano/nanorc
