@@ -2,12 +2,6 @@
 set -e
 set -u
 
-# This script will only run when running as a normal user
-if [[ $EUID == 0 ]]; then
-    echo "This script must be run as a normal user."
-    exit 1
-fi
-
 files=$(dirname $0)/files
 source ${files}/support.sh
 
