@@ -21,6 +21,9 @@ sudo pacman -S --noconfirm --needed --asdeps dosfstools exfat-utils ntfs-3g xfsp
 # Install jdownload download manager
 yay -S --noconfirm jdownloader2
 
+# Enable the Avahi daemon
+sudo systemctl enable avahi-daemon.service
+
 
 ################
 ## Extensions ##
