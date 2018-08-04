@@ -139,6 +139,56 @@ systemctl enable reflector.timer
 fi
 
 
+################
+## Clean Boot ##
+################
+
+# Replace Hooks with custom set of hooks
+# This mainly just removes fsck & keyboard from hooks
+echo "Removing fsck hooks"
+sed -Ei 's/^HOOKS=(.+)/HOOKS=(base udev autodetect modconf block filesystems)/' /etc/mkinitcpio.conf
+
+# Remove fallback kernel images
+echo "Removing fallback kernel images"
+sed -i "s/^PRESETS=('default' 'fallback')/PRESETS=('default')/" /etc/mkinitcpio.d/linux.preset
+rm -v /boot/initramfs-linux-fallback.img
+
+# Rebuild mkinitcpio
+mkinitcpio -P
+
+# Copy over systemd fsck services
+echo "Copying systemd-fsck services"
+cp -v /usr/lib/systemd/system/systemd-fsck@.service /etc/systemd/system/systemd-fsck@.service
+cp -v /usr/lib/systemd/system/systemd-fsck-root.service /etc/systemd/system/systemd-fsck-root.service
+
+# Modify services to add StandardOutput and StandardError
+echo "Modifing systemd-fsck services"
+sed -i 's/TimeoutSec=0/StandardOutput=null\nStandardError=journal+console\nTimeoutSec=0/' /etc/systemd/system/systemd-fsck@.service
+sed -i 's/TimeoutSec=0/StandardOutput=null\nStandardError=journal+console\nTimeoutSec=0/' /etc/systemd/system/systemd-fsck-root.service
+
+
+#############
+## Archey3 ##
+#############
+
+# Install archey3 if missing
+pacman -Sy --noconfirm --needed archey3
+
+# Root config
+cat > /root/.config/archey3.cfg <<EOF
+color = red
+align = center
+display_modules = de(), distro(), uname(r), fs(/), ram(), uname(n), packages(), uptime()
+EOF
+
+# User config
+cat > /etc/skel/.config/archey3.cfg <<EOF
+color = cyan
+align = center
+display_modules = de(), distro(), uname(r), fs(/), ram(), uname(n), packages(), uptime()
+EOF
+
+
 ###################
 ## User Accounts ##
 ###################
@@ -220,31 +270,3 @@ install -vm 644 /opt/install-scripts/dotzshrc /etc/skel/.zshrc
 install -vm 644 /opt/install-scripts/dotzshrc /root/.zshrc
 install -vm 644 /opt/install-scripts/dotzshrc /home/${USERNAME}/.zshrc
 chown ${USERNAME}:${USERNAME} /home/${USERNAME}/.zshrc
-
-
-################
-## Clean Boot ##
-################
-
-# Replace Hooks with custom set of hooks
-# This mainly just removes fsck & keyboard from hooks
-echo "Removing fsck hooks"
-sed -Ei 's/^HOOKS=(.+)/HOOKS=(base udev autodetect modconf block filesystems)/' /etc/mkinitcpio.conf
-
-# Remove fallback kernel images
-echo "Removing fallback kernel images"
-sed -i "s/^PRESETS=('default' 'fallback')/PRESETS=('default')/" /etc/mkinitcpio.d/linux.preset
-rm -v /boot/initramfs-linux-fallback.img
-
-# Rebuild mkinitcpio
-mkinitcpio -P
-
-# Copy over systemd fsck services
-echo "Copying systemd-fsck services"
-cp -v /usr/lib/systemd/system/systemd-fsck@.service /etc/systemd/system/systemd-fsck@.service
-cp -v /usr/lib/systemd/system/systemd-fsck-root.service /etc/systemd/system/systemd-fsck-root.service
-
-# Modify services to add StandardOutput and StandardError
-echo "Modifing systemd-fsck services"
-sed -i 's/TimeoutSec=0/StandardOutput=null\nStandardError=journal+console\nTimeoutSec=0/' /etc/systemd/system/systemd-fsck@.service
-sed -i 's/TimeoutSec=0/StandardOutput=null\nStandardError=journal+console\nTimeoutSec=0/' /etc/systemd/system/systemd-fsck-root.service
