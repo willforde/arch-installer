@@ -211,7 +211,7 @@ echo '%wheel ALL=(ALL) ALL' > /etc/sudoers.d/10_wheel
 chmod 640 /etc/sudoers.d/10_wheel
 
 # Temporarily allow user full sudo privileges without password to allow rest of script to complete
-echo "${USERPASS} ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/99_post
+echo "${USERNAME} ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/99_post
 
 
 ################
