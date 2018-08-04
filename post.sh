@@ -264,7 +264,7 @@ pacman -S --noconfirm --needed zsh zsh-syntax-highlighting zsh-theme-powerlevel9
 pacman -S --noconfirm --needed --asdeps awesome-terminal-fonts # powerline-fonts
 
 # Install 'powerline-fonts' from community repo after a new release, v2.7 or greater
-sudo u ${USERNAME} yay -S --noconfirm oh-my-zsh-git nerd-fonts-complete powerline-fonts-git
+sudo -u ${USERNAME} yay -S --noconfirm oh-my-zsh-git nerd-fonts-complete powerline-fonts-git
 
 # Add zsh-syntax-highlighting & powerlevel9K to oh-my-zsh
 ln -s /usr/share/zsh/plugins/zsh-syntax-highlighting/ /usr/share/oh-my-zsh/custom/plugins/zsh-syntax-highlighting
