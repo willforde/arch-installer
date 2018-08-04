@@ -43,6 +43,9 @@ mkdir -p /etc/skel/.config/
 pacman -S --noconfirm --needed pkgfile
 pacman -S --noconfirm --needed --asdeps bash-completion
 
+# Ensure that pkgfile updater is enabled
+systemctl enable pkgfile-update.timer
+
 echo "Install custom bachrc"
 install -vm 644 /opt/install-scripts/bash.bashrc /etc/bash.bashrc
 install -vm 644 /opt/install-scripts/dotbashrc /etc/skel/.bashrc
@@ -176,14 +179,72 @@ rm -rf build
 ##########
 
 # Install syntax highlighting scripts
-sudo -u willforde yay -S --noconfirm nano-syntax-highlighting-git
+sudo -u ${USERNAME} yay -S --noconfirm nano-syntax-highlighting-git
 
-# Enable Support for All Highlighters and Disable text wraping
-mkdir -p /root/.config/nano /etc/skel/.config/nano /home/${USERNAME}/.config/nano/
-echo 'include "/usr/share/nano-syntax-highlighting/*.nanorc"' > /root/.config/nano/nanorc
-echo 'set nowrap' >> /root/.config/nano/nanorc
-echo 'set boldtext' >> /root/.config/nano/nanorc
-echo 'set linenumbers' >> /root/.config/nano/nanorc
-echo 'set smooth' >> /root/.config/nano/nanorc
+# Make required directorys
+mkdir -p /root/.config/nano /etc/skel/.config/nano
+sudo -u ${USERNAME} mkdir -p /home/${USERNAME}/.config/nano/
+
+# Enable Support for All Syntax Highlighters and custom settings
+cat > /root/.config/nano/nanorc <<EOF
+include "/usr/share/nano-syntax-highlighting/*.nanorc"
+set nowrap
+set boldtext
+set linenumbers
+set smooth
+EOF
+
+# Copy nanorc file to common places and change to requred ownership
 cp -v /root/.config/nano/nanorc /etc/skel/.config/nano/nanorc
 cp -v /root/.config/nano/nanorc /home/${USERNAME}/.config/nano/nanorc
+chown ${USERNAME}:${USERNAME} /home/${USERNAME}/.config/nano/nanorc
+
+
+#########
+## ZSH ##
+#########
+
+# Install zsh core
+pacman -S --noconfirm --needed zsh zsh-syntax-highlighting zsh-theme-powerlevel9k
+pacman -S --noconfirm --needed --asdeps awesome-terminal-fonts # powerline-fonts
+
+# Install 'powerline-fonts' from community repo after a new release, v2.7 or greater
+sudo u ${USERNAME} yay -S --noconfirm oh-my-zsh-git nerd-fonts-complete powerline-fonts-git
+
+# Add zsh-syntax-highlighting & powerlevel9K to oh-my-zsh
+ln -s /usr/share/zsh/plugins/zsh-syntax-highlighting/ /usr/share/oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+ln -s /usr/share/zsh-theme-powerlevel9k /usr/share/oh-my-zsh/custom/themes/powerlevel9k
+
+# Install all the zshrc files
+install -vm 644 /opt/install-scripts/dotzshrc /etc/skel/.zshrc
+install -vm 644 /opt/install-scripts/dotzshrc /root/.zshrc
+install -vm 644 /opt/install-scripts/dotzshrc /home/${USERNAME}/.zshrc
+chown ${USERNAME}:${USERNAME} /home/${USERNAME}/.zshrc
+
+
+################
+## Clean Boot ##
+################
+
+# Replace Hooks with custom set of hooks
+# This mainly just removes fsck & keyboard from hooks
+echo "Removing fsck hooks"
+sed -Ei 's/^HOOKS=(.+)/HOOKS=(base udev autodetect modconf block filesystems)/' /etc/mkinitcpio.conf
+
+# Remove fallback kernel images
+echo "Removing fallback kernel images"
+sed -i "s/^PRESETS=('default' 'fallback')/PRESETS=('default')/" /etc/mkinitcpio.d/linux.preset
+rm -v /boot/initramfs-linux-fallback.img
+
+# Rebuild mkinitcpio
+mkinitcpio -P
+
+# Copy over systemd fsck services
+echo "Copying systemd-fsck services"
+cp -v /usr/lib/systemd/system/systemd-fsck@.service /etc/systemd/system/systemd-fsck@.service
+cp -v /usr/lib/systemd/system/systemd-fsck-root.service /etc/systemd/system/systemd-fsck-root.service
+
+# Modify services to add StandardOutput and StandardError
+echo "Modifing systemd-fsck services"
+sed -i 's/TimeoutSec=0/StandardOutput=null\nStandardError=journal+console\nTimeoutSec=0/' /etc/systemd/system/systemd-fsck@.service
+sed -i 's/TimeoutSec=0/StandardOutput=null\nStandardError=journal+console\nTimeoutSec=0/' /etc/systemd/system/systemd-fsck-root.service
