@@ -173,7 +173,7 @@ sudo systemctl start NetworkManager.service
 ## Cleanup ##
 #############
 
-yay -c
+yay -c --noconfirm
 
 echo ""
 echo "##########################################"

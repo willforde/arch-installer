@@ -281,5 +281,5 @@ chown ${USERNAME}:${USERNAME} /home/${USERNAME}/.zshrc
 ## Cleanup ##
 #############
 
-sudo -u ${USERNAME} yay -c
+sudo -u ${USERNAME} yay -c --noconfirm
 rm -rf /etc/sudoers.d/99_post
