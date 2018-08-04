@@ -47,8 +47,8 @@ pacman -S --noconfirm --needed --asdeps bash-completion
 systemctl enable pkgfile-update.timer
 
 echo "Install custom bachrc"
-install -vm 644 /opt/install-scripts/bash.bashrc /etc/bash.bashrc
-install -vm 644 /opt/install-scripts/dotbashrc /etc/skel/.bashrc
+install -vm 644 /opt/install-scripts/files/bash.bashrc /etc/bash.bashrc
+install -vm 644 /opt/install-scripts/files/dotbashrc /etc/skel/.bashrc
 
 
 ##################
@@ -266,7 +266,7 @@ ln -s /usr/share/zsh/plugins/zsh-syntax-highlighting/ /usr/share/oh-my-zsh/custo
 ln -s /usr/share/zsh-theme-powerlevel9k /usr/share/oh-my-zsh/custom/themes/powerlevel9k
 
 # Install all the zshrc files
-install -vm 644 /opt/install-scripts/dotzshrc /etc/skel/.zshrc
-install -vm 644 /opt/install-scripts/dotzshrc /root/.zshrc
-install -vm 644 /opt/install-scripts/dotzshrc /home/${USERNAME}/.zshrc
+install -vm 644 /opt/install-scripts/files/dotzshrc /root/.zshrc
+install -vm 644 /opt/install-scripts/files/dotzshrc /etc/skel/.zshrc
+install -vm 644 /opt/install-scripts/files/dotzshrc /home/${USERNAME}/.zshrc
 chown ${USERNAME}:${USERNAME} /home/${USERNAME}/.zshrc
