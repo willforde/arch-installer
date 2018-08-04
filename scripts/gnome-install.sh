@@ -133,6 +133,8 @@ dbus-launch gsettings set org.gnome.Terminal.Legacy.Settings default-show-menuba
 ###############
 
 # Settings
+dbus-launch gsettings set ca.desrt.dconf-editor.Settings show-warning false
+dbus-launch gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
 dbus-launch gsettings set org.gnome.desktop.interface clock-show-date true
 dbus-launch gsettings set org.gnome.desktop.notifications show-in-lock-screen false
 dbus-launch gsettings set org.gnome.desktop.datetime automatic-timezone true
@@ -145,6 +147,7 @@ dbus-launch gsettings set org.gnome.desktop.privacy old-files-age 14
 dbus-launch gsettings set org.gnome.desktop.session idle-delay 0
 dbus-launch gsettings set org.gnome.desktop.wm.preferences action-middle-click-titlebar "minimize"
 dbus-launch gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 3600
+dbus-launch gsettings set org.gnome.system.location enabled true
 
 # Enable extensions and set favorites
 dbus-launch gsettings set org.gnome.shell enabled-extensions "['user-theme@gnome-shell-extensions.gcampax.github.com', 'unredirect@vaina.lt', 'openweather-extension@jenslody.de']"
