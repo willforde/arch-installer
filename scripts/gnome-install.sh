@@ -169,7 +169,10 @@ sudo systemctl enable NetworkManager.service
 sudo systemctl start NetworkManager.service
 
 
-# Cleanup
+#############
+## Cleanup ##
+#############
+
 yay -c
 
 echo ""

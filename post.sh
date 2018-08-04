@@ -176,6 +176,7 @@ pacman -Sy --noconfirm --needed archey3
 
 # Root config
 cat > /root/.config/archey3.cfg <<EOF
+[core]
 color = red
 align = center
 display_modules = de(), distro(), uname(r), fs(/), ram(), uname(n), packages(), uptime()
@@ -183,6 +184,7 @@ EOF
 
 # User config
 cat > /etc/skel/.config/archey3.cfg <<EOF
+[core]
 color = cyan
 align = center
 display_modules = de(), distro(), uname(r), fs(/), ram(), uname(n), packages(), uptime()
@@ -207,6 +209,9 @@ echo -e "${USERPASS}\n${USERPASS}" | passwd ${USERNAME}
 # Change sudoers to allow wheel group access to sudo with password
 echo '%wheel ALL=(ALL) ALL' > /etc/sudoers.d/10_wheel
 chmod 640 /etc/sudoers.d/10_wheel
+
+# Temporarily allow user full sudo privileges without password to allow rest of script to complete
+echo "${USERPASS} ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/99_post
 
 
 ################
@@ -270,3 +275,11 @@ install -vm 644 /opt/install-scripts/files/dotzshrc /root/.zshrc
 install -vm 644 /opt/install-scripts/files/dotzshrc /etc/skel/.zshrc
 install -vm 644 /opt/install-scripts/files/dotzshrc /home/${USERNAME}/.zshrc
 chown ${USERNAME}:${USERNAME} /home/${USERNAME}/.zshrc
+
+
+#############
+## Cleanup ##
+#############
+
+sudo -u ${USERNAME} yay -c
+rm -rf /etc/sudoers.d/99_post
