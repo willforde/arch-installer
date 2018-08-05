@@ -13,4 +13,4 @@ yay -c --noconfirm
 
 # Start & enable to cups damon
 sudo systemctl start org.cups.cupsd.service
-sudo systemctl enable org.cups.cupsd.service
+sudo systemctl enable org.cups.cupsd.socket
