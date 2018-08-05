@@ -9,7 +9,7 @@ check_yay
 
 # This install's HP laserjet Pinter drivers
 yay -S --noconfirm foo2zjs-nightly
-yay -c
+yay -c --noconfirm
 
 # Start & enable to cups damon
 sudo systemctl start org.cups.cupsd.service
