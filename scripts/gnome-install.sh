@@ -150,7 +150,7 @@ dbus-launch gsettings set org.gnome.system.location enabled true
 
 # Enable extensions and set favorites
 dbus-launch gsettings set org.gnome.shell enabled-extensions "['user-theme@gnome-shell-extensions.gcampax.github.com', 'unredirect@vaina.lt', 'openweather-extension@jenslody.de']"
-dbus-launch gsettings set org.gnome.shell favorite-apps "['org.gnome.Terminal.desktop', 'firefox.desktop', 'chromium.desktop', 'org.gnome.Nautilus.desktop', 'pycharm-community-eap.desktop']"
+dbus-launch gsettings set org.gnome.shell favorite-apps "['org.gnome.Terminal.desktop', 'firefox.desktop', 'chromium.desktop', 'org.gnome.Nautilus.desktop', 'pycharm.desktop']"
 
 
 #####################
