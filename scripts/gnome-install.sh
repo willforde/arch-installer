@@ -55,6 +55,7 @@ dbus-launch gsettings set org.gnome.shell.extensions.openweather unit "celsius"
 ############
 
 sudo pacman -S --noconfirm --needed adapta-gtk-theme
+sudo pacman -S --noconfirm --needed --asdeps ttf-roboto
 yay -S --noconfirm numix-square-icon-theme-git
 
 dbus-launch gsettings set org.gnome.shell.extensions.user-theme name "Adapta-Nokto"
