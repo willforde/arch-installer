@@ -133,7 +133,6 @@ dbus-launch gsettings set org.gnome.Terminal.Legacy.Settings default-show-menuba
 ###############
 
 # Settings
-dbus-launch gsettings set ca.desrt.dconf-editor.Settings show-warning false
 dbus-launch gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
 dbus-launch gsettings set org.gnome.desktop.interface clock-show-date true
 dbus-launch gsettings set org.gnome.desktop.notifications show-in-lock-screen false
