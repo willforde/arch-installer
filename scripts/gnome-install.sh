@@ -24,6 +24,9 @@ yay -S --noconfirm jdownloader2
 # Enable the Avahi daemon
 sudo systemctl enable avahi-daemon.service
 
+# Disable pulse audio upmixing
+sudo sed -i 's|; enable-remixing = yes|enable-remixing = no|' /etc/pulse/daemon.conf
+
 
 ################
 ## Extensions ##
