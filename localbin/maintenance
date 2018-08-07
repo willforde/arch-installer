@@ -25,3 +25,6 @@ sudo pacman --clean
 
 # Use yay to remove orphan packages
 yay -c --noconfirm
+
+# Clean pacman & yay cache
+yay -Sc --noconfirm
