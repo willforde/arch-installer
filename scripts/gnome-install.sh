@@ -18,8 +18,8 @@ sudo pacman -S --noconfirm --needed gnome-shell-extensions gnome-backgrounds gno
 sudo pacman -S --noconfirm --needed gparted baobab evince eog filezilla atom firefox-i18n-en-gb chromium deluge gimp mpv youtube-dl pycharm-community-edition remmina variety kodi git
 sudo pacman -S --noconfirm --needed --asdeps dosfstools exfat-utils ntfs-3g xfsprogs polkit gpart ttf-dejavu python2-notify pygtk librsvg freerdp gdb libnfs lsb-release
 
-# Install jdownload download manager
-yay -S --noconfirm jdownloader2
+# Install AUR packages
+yay -S --noconfirm jdownloader2 profile-cleaner
 
 # Enable the Avahi daemon
 sudo systemctl enable avahi-daemon.service
