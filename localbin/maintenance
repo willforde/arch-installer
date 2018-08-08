@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
 # Clean firefox user profile
-if [ -f "/usr/bin/firefox" ]; then
+if [ -f "/usr/bin/firefox" ] && [ -f "/usr/bin/profile-cleaner" ]; then
     profile-cleaner f # firefox
 fi
 
 # Clean chromium user profile
-if [ -f "/usr/bin/chromium" ]; then
+if [ -f "/usr/bin/chromium" ] && [ -f "/usr/bin/profile-cleaner" ]; then
     profile-cleaner c # chromium
 fi
 
@@ -19,9 +19,6 @@ fi
 if [ -f "/usr/bin/asd" ]; then
     asd clean
 fi
-
-# Remove packages that are no longer installed
-sudo pacman --clean
 
 # Use yay to remove orphan packages
 yay -c --noconfirm
