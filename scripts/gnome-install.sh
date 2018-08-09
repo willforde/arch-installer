@@ -16,7 +16,10 @@ sudo pacman -S --noconfirm --needed gnome-shell-extensions gnome-backgrounds gno
 
 # Third party applications
 sudo pacman -S --noconfirm --needed gparted baobab evince eog filezilla atom firefox-i18n-en-gb chromium deluge gimp mpv youtube-dl pycharm-community-edition remmina variety kodi git
-sudo pacman -S --noconfirm --needed --asdeps dosfstools exfat-utils ntfs-3g xfsprogs polkit gpart ttf-dejavu python2-notify pygtk librsvg freerdp gdb libnfs lsb-release
+sudo pacman -S --noconfirm --needed --asdeps dosfstools exfat-utils ntfs-3g xfsprogs polkit gpart python2-notify pygtk librsvg freerdp gdb libnfs lsb-release
+
+# Fonts
+sudo pacman -S --noconfirm --needed --asdeps ttf-dejavu ttf-liberation
 
 # Install AUR packages
 yay -S --noconfirm jdownloader2 profile-cleaner

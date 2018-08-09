@@ -21,5 +21,4 @@ if pacman -Qq nvidia-utils; then
 fi
 
 # Install steam
-sudo pacman -S --noconfirm --needed --asdeps ttf-liberation
 sudo pacman -S --noconfirm --needed steam steam-native-runtime
