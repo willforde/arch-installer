@@ -19,7 +19,7 @@ sudo pacman -S --noconfirm --needed gparted baobab evince eog filezilla atom fir
 sudo pacman -S --noconfirm --needed --asdeps dosfstools exfat-utils ntfs-3g xfsprogs polkit gpart python2-notify pygtk librsvg freerdp gdb libnfs lsb-release
 
 # Fonts
-sudo pacman -S --noconfirm --needed --asdeps ttf-dejavu ttf-liberation ttf-bitstream-vera
+sudo pacman -S --noconfirm --needed --asdeps ttf-dejavu ttf-liberation ttf-bitstream-vera noto-fonts
 
 # Install AUR packages
 yay -S --noconfirm jdownloader2 profile-cleaner
