@@ -49,7 +49,7 @@ EOF
 
 # Add include line to refind.conf if it don't exist, to enable this theme
 if grep -Exq "include themes/rEFInd-\w+/theme.conf" ../refind.conf; then
-    sed -Ei "s|include themes/rEFInd-\w+/theme.conf|include themes/rEFInd-minimal/theme.conf|" refind.conf
+    sed -Ei "s|include themes/rEFInd-\w+/theme.conf|include themes/rEFInd-minimal/theme.conf|" ../refind.conf
 else
     echo 'include themes/rEFInd-minimal/theme.conf' >> ../refind.conf
 fi
