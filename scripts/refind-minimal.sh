@@ -38,7 +38,7 @@ rm -fv rEFInd-minimal/theme.conf
 echo "Creating custom theme.conf"
 cat > rEFInd-minimal/theme.conf <<EOF
 hideui singleuser,hints,arrows,label
-#icons_dir themes/rEFInd-minimal/icons
+icons_dir themes/rEFInd-minimal/icons
 banner themes/rEFInd-minimal/background.png
 selection_big   themes/rEFInd-minimal/selection_big.png
 selection_small themes/rEFInd-minimal/selection_small.png

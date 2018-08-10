@@ -38,7 +38,7 @@ rm -fv rEFInd-black/theme.conf
 echo "Creating custom theme.conf"
 cat > rEFInd-black/theme.conf <<EOF
 hideui singleuser,hints,arrows,label
-#icons_dir themes/rEFInd-black/icons
+icons_dir themes/rEFInd-black/icons
 banner themes/rEFInd-black/background.png
 selection_big   themes/rEFInd-black/selection_big.png
 selection_small themes/rEFInd-black/selection_small.png
