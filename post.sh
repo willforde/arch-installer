@@ -202,6 +202,9 @@ USERPASS=$3
 echo "Changing Root password"
 echo -e "${ROOTPASSWORD}\n${ROOTPASSWORD}" | passwd root
 
+# Add users local bin directory to system PATH
+echo 'PATH=~/.local/bin:$PATH' >> /etc/skel/.profile
+
 # Create user acount
 useradd -m -G wheel,users -s /bin/bash ${USERNAME}
 echo -e "${USERPASS}\n${USERPASS}" | passwd ${USERNAME}
@@ -212,6 +215,7 @@ chmod 640 /etc/sudoers.d/10_wheel
 
 # Temporarily allow user full sudo privileges without password to allow rest of script to complete
 echo "${USERNAME} ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/99_post
+
 
 
 ################
