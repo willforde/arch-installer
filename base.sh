@@ -287,7 +287,7 @@ pacman -Sy --noconfirm --needed reflector
 
 # Download and sort Mirrors List from Archlinux.org
 echo "Downloading and Ranking mirrors"
-reflector --verbose --protocol http --latest 200 --number 20 --sort rate --save /etc/pacman.d/mirrorlist
+reflector --verbose --protocol http --latest 50 --number 20 --sort rate --save /etc/pacman.d/mirrorlist
 pacman -Syy
 
 echo "# Installing Main System"
