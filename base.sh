@@ -66,7 +66,7 @@ requestPackages()
 		if [ "$pkg" = 1 ]; then
 		    # openssh		= Free version of the SSH connectivity tools            = https://www.archlinux.org/packages/core/x86_64/openssh/
 			EXTRAPKG="$EXTRAPKG openssh"
-			DAEMONS="$DAEMONS sshd.socket"
+			DAEMONS="$DAEMONS sshd.service"
 
 		elif [ "$pkg" = 2 ]; then
 		    # reflector		= Retrieve and filter the latest Pacman mirror list		= https://www.archlinux.org/packages/community/any/reflector/
