@@ -25,3 +25,6 @@ yay -c --noconfirm
 
 # Clean pacman & yay cache
 yay -Sc --noconfirm
+
+# Refresh pacman mirrors
+30 sudo systemctl start reflector.service
